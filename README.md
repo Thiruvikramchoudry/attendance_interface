@@ -71,7 +71,14 @@ python manage.py runserver
 * [Srinath](https://github.com/srinath0307)
 * [Jaswanth](https://github.com/JASWANTHJET)
 * [Sharavanan](https://github.com/Sharavanan69)
+## Contributing
+Contributions to this project are welcome. To contribute, follow these steps:
 
+1. Fork the repository.
+2. Create a new branch for your feature.
+3. Make your changes and commit them.
+4. Push your changes to your fork.
+5. Submit a pull request.
 ## Conclusion
 
 Creating a monitoring system for attendance tracking in MGNREGS requires careful planning and execution. By following the steps outlined in this project, we can create a system that efficiently tracks and records attendance and generates reports that provide valuable insights to stakeholders.
