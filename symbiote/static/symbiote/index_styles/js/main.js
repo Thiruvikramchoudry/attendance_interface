@@ -68,7 +68,7 @@
             datasets: [{
                     label: "USA",
                     data: [15, 30, 55, 65, 60, 80, 95],
-                    backgroundColor: "rgba(0, 156, 255, .7)"
+                    backgroundColor: "rgba(201,30,30,0.7)"
                 },
                 {
                     label: "UK",
@@ -78,7 +78,7 @@
                 {
                     label: "AU",
                     data: [12, 25, 45, 55, 65, 70, 60],
-                    backgroundColor: "rgba(0, 156, 255, .3)"
+                    backgroundColor: "rgba(177,4,225,0.3)"
                 }
             ]
             },
