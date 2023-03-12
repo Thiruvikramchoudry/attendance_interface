@@ -66,4 +66,18 @@ def attendance_status(request):
 
 
 def add_employee(request):
+    if request.method=="POST":
+        name=request.POST['name']
+        designation=request.POST['designation']
+        date_of_birth=request.POST['date_of_birth']
+        gender= request.POST['gender']
+        address = request.POST['address']
+        phone=request.POST['phone_number']
+        # emp=details(name=name,designation=designation,date_of_birth=date_of_birth,gender=gender,address=address,phone=phone)
+        # emp.save()
+        print(name,designation,date_of_birth,gender,address,phone)
+        return redirect('sample')
     return render(request,'symbiote/add_employee.html',{'username':"sample"})
+
+def admin(request):
+    return render(request,'admin')
