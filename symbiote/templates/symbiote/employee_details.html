@@ -34,13 +34,7 @@
 
 <body style="background: #1B2430">
     <div class="container-xxl position-relative d-flex p-0" >
-        <!-- Spinner Start -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-        <!-- Spinner End -->
+
 
 
         <!-- Sidebar Start -->
@@ -60,7 +54,7 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="{% url 'sample' %}" class="nav-item nav-link active" ><i class="fa fa-tachometer-alt me-2"></i><span style="color: #F2F2F0">Dashboard</span></a>
+                    <a href="{% url 'sample' %}" class="nav-item nav-link " ><i class="fa fa-tachometer-alt me-2"></i><span style="color: #F2F2F0">Dashboard</span></a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i><span style="color: #F2F2F0">Clear Data</span></a>
                         <div class="dropdown-menu bg-transparent border-0">
@@ -69,7 +63,7 @@
                             <a href="element.html" class="dropdown-item" style="color: whitesmoke">Just Save</a>
                         </div>
                     </div>
-                    <a href="{% url 'employee_details' %}" class="nav-item nav-link"><i class="fa fa-th me-2"></i><span style="color: #F2F2F0">Empoloyee Details</span></a>
+                    <a href="{% url 'employee_details' %}" class="nav-item nav-link active"><i class="fa fa-th me-2"></i><span style="color: #F2F2F0">Empoloyee Details</span></a>
                     <a href="{% url 'attendance_status' %}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i><span style="color: #F2F2F0">Attendence Status</span></a>
                     <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i><span style="color: #F2F2F0">Add Employee</span></a>
                     <a href="" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i><span style="color: #F2F2F0">Admin Settings</span></a>
@@ -175,74 +169,10 @@
             <!-- Navbar End -->
 
 
-            <!-- Sale & Revenue Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-line fa-3x text-primary"></i>
-                            <div class="ms-3">
-                                <p class="mb-2">Total Count</p>
-                                <h6 class="mb-0">{{ total_count }}</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-bar fa-3x text-primary"></i>
-                            <div class="ms-3">
-                                <p class="mb-2">Today Count</p>
-                                <h6 class="mb-0">{{ today_count }}</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-area fa-3x text-primary"></i>
-                            <div class="ms-3">
-                                <p class="mb-2">Late Entry</p>
-                                <h6 class="mb-0">{{ late_entry }}</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-pie fa-3x text-primary"></i>
-                            <div class="ms-3">
-                                <p class="mb-2">PreLeave Count</p>
-                                <h6 class="mb-0">0</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Sale & Revenue End -->
 
 
-            <!-- Sales Chart Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-light text-center rounded p-4">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">Worldwide Sales</h6>
-                                <a href="" style="color: #85CDFD">Show All</a>
-                            </div>
-                            <canvas id="worldwide-sales"></canvas>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-light text-center rounded p-4">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">Salse & Revenue</h6>
-                                <a href="" style="color: #85CDFD">Show All</a>
-                            </div>
-                            <canvas id="salse-revenue"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Sales Chart End -->
+
+
 
 
             <!-- Recent Sales Start -->
@@ -256,10 +186,13 @@
                         <table class="table text-start align-middle table-bordered table-hover mb-0">
                             <thead>
                                 <tr class="text-dark">
-                                    <th scope="col" style="text-align: center">Employee_id</th>
-                                    <th scope="col" style="text-align: center">Date</th>
-                                    <th scope="col" style="text-align: center">Time</th>
-                                    <th scope="col" style="text-align: center">Status</th>
+                                    <th scope="col" style="text-align: center">Employee Id</th>
+                                    <th scope="col" style="text-align: center">Employee Name</th>
+                                    <th scope="col" style="text-align: center">Gender</th>
+                                    <th scope="col" style="text-align: center">Age</th>
+                                    <th scope="col" style="text-align: center">Absentism Count</th>
+                                    <th scope="col" style="text-align: center">Working Days</th>
+                                    <th scope="col" style="text-align: center">Late Entry</th>
 
                                 </tr>
                             </thead>
@@ -267,13 +200,14 @@
                                 {% for i in details %}
                                 <tr>
                                     <td style="text-align: center">{{ i.Employee_id }}</td>
-                                    <td style="text-align: center">{{ i.Date }}</td>
-                                    <td style="text-align: center">{{ i.Time }}</td>
-                                    <td style="text-align: center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bookmark-check-fill" viewBox="0 0 16 16" style="color: #0ce80c">
-  <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm8.854-9.646a.5.5 0 0 0-.708-.708L7.5 7.793 6.354 6.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
-</svg>
-                                    </td>
+                                    <td style="text-align: center">{{ i.Employee_name }}</td>
+                                    <td style="text-align: center">{{ i.Employee_gender }}</td>
+                                    <td style="text-align: center">{{ i.Employee_age }}</td>
+                                    <td style="text-align: center">0</td>
+                                    <td style="text-align: center">0</td>
+                                    <td style="text-align: center">0</td>
+
+
 
                                 </tr>
                                 {% endfor %}

@@ -64,22 +64,23 @@
     var myChart1 = new Chart(ctx1, {
         type: "bar",
         data: {
-            labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022"],
+            labels: get_data(0),
             datasets: [{
-                    label: "USA",
-                    data: [15, 30, 55, 65, 60, 80, 95],
-                    backgroundColor: "rgba(201,30,30,0.7)"
+                    label: "Total Employee",
+                    data: get_data(2),
+                    backgroundColor: "#2a3954"
                 },
                 {
-                    label: "UK",
-                    data: [8, 35, 40, 60, 70, 55, 75],
-                    backgroundColor: "rgba(0, 156, 255, .5)"
+                    label: "Present Count",
+                    data: get_data(4),
+                    backgroundColor: "#0be8b0"
                 },
                 {
-                    label: "AU",
-                    data: [12, 25, 45, 55, 65, 70, 60],
-                    backgroundColor: "rgba(177,4,225,0.3)"
-                }
+                    label: "Absentism",
+                    data: get_data(3),
+                    backgroundColor: "#f33e53"
+                },
+
             ]
             },
         options: {
@@ -93,17 +94,23 @@
     var myChart2 = new Chart(ctx2, {
         type: "line",
         data: {
-            labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022"],
+            labels: get_data(0),
             datasets: [{
-                    label: "Salse",
-                    data: [15, 30, 55, 45, 70, 65, 85],
+                    label: "Total Employee",
+                    data: get_data(2),
                     backgroundColor: "rgba(0, 156, 255, .5)",
                     fill: true
                 },
                 {
-                    label: "Revenue",
-                    data: [99, 135, 170, 130, 190, 180, 270],
-                    backgroundColor: "rgba(0, 156, 255, .3)",
+                    label: "Present Count",
+                    data: get_data(4),
+                    backgroundColor: "rgba(0,255,138,0.3)",
+                    fill: true
+                },
+                {
+                    label: "Absentism",
+                    data: get_data(3),
+                    backgroundColor: "rgb(255,2,61)",
                     fill: true
                 }
             ]
@@ -204,4 +211,53 @@
 
     
 })(jQuery);
+
+
+function get_data(n){
+    let res=[]
+    if (n==1){
+        let preleave_person =document.getElementById("preleave_person").innerText;
+        preleave_person=preleave_person.slice(1,-1).split(",")
+        for(i=0;i<preleave_person.length;i++){
+            res.push(parseInt(preleave_person[i]))
+        }
+        console.log(res)
+        return res
+    }else if (n==0) {
+        let dates = document.getElementById("dates").innerText;
+        dates = dates.slice(1, -1).split(",")
+        for (i = 0; i < dates.length; i+=3) {
+            res.push(dates[i+2].replace(')','')+"/"+dates[i+1])
+        }
+        console.log(res)
+        return res
+    }else if(n==2){
+        let total_person =document.getElementById("total_person").innerText;
+        console.log(total_person)
+        total_person=total_person.slice(1,-1).split(",")
+        for(i=0;i<total_person.length;i++){
+            res.push(parseInt(total_person[i]))
+        }
+        //console.log(res)
+        return res
+    }else if(n==3){
+        let late_person =document.getElementById("late_person").innerText;
+        late_person=late_person.slice(1,-1).split(",")
+        for(i=0;i<late_person.length;i++){
+            res.push(parseInt(late_person[i]))
+        }
+        console.log(res)
+        return res
+    }else if(n==4) {
+        let present_count = document.getElementById("present_count").innerText;
+        present_count = present_count.slice(1, -1).split(",")
+        for (i = 0; i < present_count.length; i++) {
+            res.push(parseInt(present_count[i]))
+        }
+        console.log(res)
+        return res
+
+    }
+
+}
 

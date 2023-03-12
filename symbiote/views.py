@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User, auth
 from django.contrib.auth import authenticate
-from .models import details,attendence_area
-import datetime
+from .models import details,attendence_area,absenteeism_count
+import datetime,json
 
 # Create your views here.
 
@@ -36,9 +36,17 @@ def sample(request):
         ss=int(time[2])
         if hh>10 or (hh==10 and mm!=00 ):
             late_entry+=1
+    record=absenteeism_count.objects.all()
+    present_count=[];total_person=[];late_person=[];preleave_person=[];dates=[]
+    for i in record[::-1][:6][::-1]:
+        present_count.append(i.Total_person-i.preleave_count-i.absent_count)
+        total_person.append(i.Total_person)
+        late_person.append(i.late_count)
+        preleave_person.append(i.preleave_count)
+        dates.append(i.Date)
 
 
-    return render(request, 'symbiote/index.html', {'username': "sample", 'details': data,'total_count':total_count,'today_count':today_count,'late_entry':late_entry})
+    return render(request, 'symbiote/index.html', {'username': "sample", 'details': data,'total_count':total_count,'today_count':today_count,'late_entry':late_entry,'present_count':present_count,'total_person':total_person,'late_person':late_person,'preleave_person':preleave_person,'dates':dates})
 
 
 
@@ -49,4 +57,9 @@ def clear(request):
 
 def employee_detail(request):
     Employee_data=details.objects.all()
-    return render(request,'symbiote/detail_page.html',{'Employee_data':Employee_data})
+    return render(request,'symbiote/employee_details.html',{'username':'sample','details':Employee_data})
+
+
+def attendance_status(request):
+    data = attendence_area.objects.all()
+    return render(request,'symbiote/attendance_status.html',{'username': "sample", 'details': data})
