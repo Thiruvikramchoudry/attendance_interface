@@ -22,7 +22,7 @@ class attendence_area(models.Model):
         return str(self.Employee_id)
 
 
-class absenteeism_count(models.Model):
+class absenteism_count(models.Model):
     Date=models.DateField(default=datetime.date.today())
     Total_person=models.IntegerField(null=True,default=0)
     absent_count=models.IntegerField(null=True,default=0)

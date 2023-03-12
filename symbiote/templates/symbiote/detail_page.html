@@ -1,0 +1,78 @@
+{%  load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{%  static 'symbiote/user_details_style/fonts/icomoon/style.css' %}">
+
+    <link rel="stylesheet" href="{%  static 'symbiote/user_details_style/css/owl.carousel.min.css' %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{%  static 'symbiote/user_details_style/css/bootstrap.min.css' %}">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="{%  static 'symbiote/user_details_style/css/style.css' %}">
+
+    <title>Employee Details</title>
+  </head>
+  <body>
+  
+
+  <div class="content">
+    
+    <div class="container">
+
+      <div class="table-responsive">
+
+        <table class="table table-striped custom-table">
+          <thead>
+            <tr>
+              
+              <th scope="col">Employee Id</th>
+              <th scope="col">Employee Name</th>
+              <th scope="col">Gender</th>
+              <th scope="col">Age</th>
+              <th scope="col">Absentism Count</th>
+              <th scope="col">Locality</th>
+            </tr>
+          </thead>
+          <tbody>
+          {%  for detail in Employee_data %}
+            <tr scope="row">
+                      <td>
+                        {{ detail.Employee_id }}
+                      </td>
+                      <td><a href="#">{{ detail.Employee_name}}</a></td>
+                      <td>
+                        {{ detail.Employee_gender }}
+                      </td>
+                      <td>{{ detail.Employee_age }}</td>
+                      <td>0</td>
+                        <td>10/145 corenila street NewYork</td>
+
+            </tr>
+          {% endfor %}
+
+
+            
+          </tbody>
+        </table>
+      </div>
+
+
+    </div>
+
+  </div>
+    
+    
+
+    <script src="{%  static 'symbiote/user_details_style/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{%  static 'symbiote/user_details_style/js/popper.min.js' %}"></script>
+    <script src="{%  static 'symbiote/user_details_style/js/bootstrap.min.js' %}"></script>
+    <script src="{%  static 'symbiote/user_details_style/js/main.js' %}"></script>
+  </body>
+</html>

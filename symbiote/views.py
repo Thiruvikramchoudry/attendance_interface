@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User, auth
 from django.contrib.auth import authenticate
-from .models import details,attendence_area,absenteeism_count
+from .models import details,attendence_area,absenteism_count
 import datetime,json
 
 # Create your views here.
@@ -36,7 +36,7 @@ def sample(request):
         ss=int(time[2])
         if hh>10 or (hh==10 and mm!=00 ):
             late_entry+=1
-    record=absenteeism_count.objects.all()
+    record=absenteism_count.objects.all()
     present_count=[];total_person=[];late_person=[];preleave_person=[];dates=[]
     for i in record[::-1][:6][::-1]:
         present_count.append(i.Total_person-i.preleave_count-i.absent_count)
