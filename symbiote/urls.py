@@ -10,6 +10,7 @@ urlpatterns = [
     path('clear_data',views.clear,name="clear_data"),
     path('employee_details',views.employee_detail,name="employee_details"),
     path('attendance_status',views.attendance_status,name="attendance_status"),
+    path('add_employee',views.add_employee,name="add_employee"),
 
 
 ]

@@ -63,3 +63,7 @@ def employee_detail(request):
 def attendance_status(request):
     data = attendence_area.objects.all()
     return render(request,'symbiote/attendance_status.html',{'username': "sample", 'details': data})
+
+
+def add_employee(request):
+    return render(request,'symbiote/add_employee.html',{'username':"sample"})
