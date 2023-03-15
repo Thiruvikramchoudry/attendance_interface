@@ -14,5 +14,6 @@ urlpatterns = [
     path('save_data',views.save_excel,name="save_data"),
     path('save_clean',views.save_clear,name="save_clean"),
     path('download_stats',views.download_stats,name="download_stats"),
+    path('login2',views.login2,name="login2"),
 
 ]

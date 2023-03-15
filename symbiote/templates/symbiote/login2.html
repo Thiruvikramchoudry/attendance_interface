@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -34,7 +34,13 @@
 
 <body style="background: #1B2430">
     <div class="container-xxl position-relative d-flex p-0" >
-
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
 
 
         <!-- Sidebar Start -->
@@ -48,25 +54,24 @@
                         <img class="rounded-circle" src="{%  static 'symbiote/index_styles/img/user.jpg' %}" alt="" style="width: 40px; height: 40px;">
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
-
                     <div class="ms-3">
                         <h6 class="mb-0" style="color: #F2F2F0" onclick="get_data()">Jhon Doe</h6>
                         <span>Admin</span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="{% url 'sample' %}" class="nav-item nav-link " ><i class="fa fa-tachometer-alt me-2"></i><span style="color: #F2F2F0">Dashboard</span></a>
+                    <a href="{% url 'sample' %}" class="nav-item nav-link active" ><i class="fa fa-tachometer-alt me-2"></i><span style="color: #F2F2F0">Dashboard</span></a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i><span style="color: #F2F2F0">Clear Data</span></a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="{% url 'clear_data' %}" class="dropdown-item" style="color: whitesmoke">Clear Updates</a>
-                            <a href="{% url 'save_clean' %}" class="dropdown-item" style="color: whitesmoke">Save & Clear</a>
+                            <a href="" class="dropdown-item" style="color: whitesmoke">Save & Clear</a>
                             <a href="{% url 'save_data' %}" class="dropdown-item" style="color: whitesmoke">Just Save</a>
                         </div>
                     </div>
                     <a href="{% url 'employee_details' %}" class="nav-item nav-link"><i class="fa fa-th me-2"></i><span style="color: #F2F2F0">Empoloyee Details</span></a>
-                    <a href="{% url 'attendance_status' %}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i><span style="color: #F2F2F0">Attendence Status</span></a>
-                    <a href="{% url 'add_employee' %}" class="nav-item nav-link active"><i class="fa fa-table me-2"></i><span style="color: #F2F2F0">Add Employee</span></a>
+                    <a href="{% url 'attendance_status' %}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i><span style="color: #F2F2F0">Attendance Status</span></a>
+                    <a href="{% url 'add_employee' %}" class="nav-item nav-link"><i class="fa fa-table me-2"></i><span style="color: #F2F2F0">Add Employee</span></a>
                     <a href="{% url 'download_stats' %}" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i><span style="color: #F2F2F0">Download Stats</span></a>
 
                 </div>
@@ -169,91 +174,52 @@
             </nav>
             <!-- Navbar End -->
 
+            <!-- Main Content Start -->
+
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
                 <div class="col-sm-12 ">
                             <div class="bg-light rounded h-100 p-4">
                                 <br>
-                                <h3 class="card-title" style="text-align: center;color: cyan">REGISTRATION</h3>
+                                <h3 class="card-title" style="text-align: center;color: cyan">LOGIN</h3>
                                 <br>
                                 <form method="post">
                                     {% csrf_token %}
-                                    <div class="row mb-3">
-                                        <label for="inputEmail3" class="col-sm-2 col-form-label" style="color: whitesmoke">Employee Name</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="name" style="background: #222f41;border: none" name="name">
+                                    <div class="row mb-4">
+                                        <label for="inputEmail3" class="col-sm-12 col-form-label" style="color: whitesmoke;text-align: center">USER NAME</label>
+
+                                        <div class="col-sm-6 mx-auto">
+                                            <input type="text" class="form-control" id="user_name" style="background: #222f41;border: none" name="user_name">
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <label for="inputPassword3" class="col-sm-2 col-form-label" style="color: whitesmoke">Designation</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="designation" style="background: #222f41;border: none" name="designation">
+                                    <div class="row sm-12">
+                                        <label for="inputPassword3" class="col-sm-12 col-form-label" style="color: whitesmoke;text-align: center;">PASSWORD</label>
+                                        <div class="col-sm-6 mx-auto">
+                                            <input type="text" class="form-control" id="password" style="background: #222f41;border: none" name="password">
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <label for="inputPassword3" class="col-sm-2 col-form-label" style="color: whitesmoke">Date of Birth</label>
-                                        <div class="col-sm-10">
-                                            <input type="date" class="form-control" id="date_of_birth" style="background: #222f41;border: none" name="date_of_birth">
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label class="col-sm-2 col-form-label" style="color: whitesmoke">Gender</label>
-                                        <div class="col-sm-10">
-                                          <select class="form-control" style="background: #222f41;border: none" name="gender" >
-                                              <option selected>SELECT...</option>
-                                            <option value="male">Male</option>
-                                            <option value="female">Female</option>
-                                          </select>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label for="inputPassword3" class="col-sm-2 col-form-label" style="color: whitesmoke">Address</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="address" style="background: #222f41;border: none" name="address">
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label for="inputPassword3" class="col-sm-2 col-form-label" style="color: whitesmoke">Phone Number</label>
-                                        <div class="col-sm-10">
-                                            <input type="tel" class="form-control" id="phone" style="background: #222f41;border: none"  name="phone_number">
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label for="inputPassword3" class="col-sm-2 col-form-label" style="color: whitesmoke">Image</label>
-                                        <div class="col-sm-10">
-                                            <input type="file" class="form-control" id="phone" style="background: #222f41;border: none"  name="image" accept="image/*">
-                                        </div>
-                                    </div>
+
                                     <br>
                                     <div style="position: relative;height: 70px;width: 100%;">
                             <div style="position:absolute;bottom:25%;right: 47%;">
                                 <button class="btn  btn-rounded btn-fw" type="submit" style="background-color: #85CDFD ; color:black">SUBMIT</button>
                             </div>
                         </div>
-{#                                    <div style="">#}
-{#                                        <button type="submit" class="btn btn-primary" >Sign in</button>#}
-{#                                    </div>#}
+{#
                                 </form>
                             </div>
                         </div>
                 </div>
             </div>
 
-
-
-            <!-- Recent Sales End -->
-            <input type="text" style="display: none" value="" id="data_getter">
-
-
-
-
+            <!-- Main Content End -->
 
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-light rounded-top p-4">
                     <div class="row">
                         <div class="col-12 col-sm-6 text-center text-sm-start">
-                            &copy; <a href="#">Your Site Name</a>, All Right Reserved. 
+                            &copy; <a href="#">Your Site Name</a>, All Right Reserved.
                         </div>
                         <div class="col-12 col-sm-6 text-center text-sm-end">
                             <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->

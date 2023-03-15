@@ -76,9 +76,10 @@ def add_employee(request):
         gender= request.POST['gender']
         address = request.POST['address']
         phone=request.POST['phone_number']
+        image = request.POST.get("image")
         # emp=details(name=name,designation=designation,date_of_birth=date_of_birth,gender=gender,address=address,phone=phone)
         # emp.save()
-        print(name,designation,date_of_birth,gender,address,phone)
+        print(name,designation,date_of_birth,gender,address,phone,image)
         return redirect('sample')
     return render(request,'symbiote/add_employee.html',{'username':"sample"})
 
@@ -161,7 +162,13 @@ def download_stats(request):
 
     return render(request,'symbiote/download_files.html',{"username":"sample","files_dir":dir_list})
 
-
+def login2(request):
+    if request.method=="POST":
+        user_name=request.POST['user_name']
+        password=request.POST['password']
+        print(user_name,password)
+        return redirect('login2')
+    return render(request,'symbiote/login2.html')
 
 
 
