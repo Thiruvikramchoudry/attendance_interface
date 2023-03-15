@@ -4,6 +4,8 @@ from django.contrib.auth import authenticate
 from .models import details,attendence_area,absenteism_count
 import datetime,json
 import pandas as pd
+import os
+
 
 # Create your views here.
 
@@ -112,9 +114,8 @@ def save_excel(request):
 
     print(status)
     df = pd.DataFrame(status, columns=['Employee_Id', 'Status'])
-    print(df)
-    date=datetime.datetime.now()
-    df.to_excel((str(date)+".xlsx"))
+    date=datetime.datetime.today().date()
+    df.to_excel("symbiote/static/symbiote/index_styles/attendance_status_files/"+(str(date) + ".xlsx"))
     return redirect('sample')
 
 def save_clear(request):
@@ -148,14 +149,17 @@ def save_clear(request):
 
     print(status)
     df = pd.DataFrame(status, columns=['Employee_Id', 'Status'])
-    print(df)
-    date = datetime.datetime.now()
-    df.to_excel((str(date) + ".xlsx"))
+    date=datetime.datetime.today().date()
+    df.to_excel("symbiote/static/symbiote/index_styles/attendance_status_files/"+(str(date) + ".xlsx"))
     clear(request)
 
 
 def download_stats(request):
-    return render(request,'symbiote/download_files.html')
+    dir_list = os.listdir('symbiote/static/symbiote/index_styles/attendance_status_files')
+    for i in range(len(dir_list)):
+        dir_list[i]=dir_list[i].split(".")[0]
+
+    return render(request,'symbiote/download_files.html',{"username":"sample","files_dir":dir_list})
 
 
 

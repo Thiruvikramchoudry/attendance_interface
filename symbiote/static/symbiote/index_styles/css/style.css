@@ -196,8 +196,23 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: #FFFFFF;
+    background: #85cdfd;
     border-radius: 40px;
+}
+#download_button{
+    width: 100px;
+    height: 40px;
+    background-color: #85cdfd;
+    color: snow;
+    padding: 9px;
+    margin: auto;
+    margin-top: 18px;
+    border-radius: 30px;
+    transition: 0.3s;
+    padding-left: 14px;
+}
+#download_button:hover{
+    background-color: #2d7eb0;
 }
 
 .content .navbar .dropdown-toggle::after {

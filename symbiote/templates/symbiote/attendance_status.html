@@ -58,14 +58,14 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i><span style="color: #F2F2F0">Clear Data</span></a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="{% url 'clear_data' %}" class="dropdown-item" style="color: whitesmoke">Clear Updates</a>
-                            <a href="typography.html" class="dropdown-item" style="color: whitesmoke">Save & Clear</a>
-                            <a href="element.html" class="dropdown-item" style="color: whitesmoke">Just Save</a>
+                            <a href="{% url 'save_clean' %}" class="dropdown-item" style="color: whitesmoke">Save & Clear</a>
+                            <a href="{% url 'save_data' %}" class="dropdown-item" style="color: whitesmoke">Just Save</a>
                         </div>
                     </div>
                     <a href="{% url 'employee_details' %}" class="nav-item nav-link"><i class="fa fa-th me-2"></i><span style="color: #F2F2F0">Empoloyee Details</span></a>
                     <a href="{% url 'attendance_status' %}" class="nav-item nav-link active"><i class="fa fa-keyboard me-2"></i><span style="color: #F2F2F0">Attendence Status</span></a>
                     <a href="{% url 'add_employee' %}" class="nav-item nav-link"><i class="fa fa-table me-2"></i><span style="color: #F2F2F0">Add Employee</span></a>
-                    <a href="" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i><span style="color: #F2F2F0">Admin Settings</span></a>
+                    <a href="{% url 'download_stats' %}" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i><span style="color: #F2F2F0">Download Stats</span></a>
 
                 </div>
             </nav>
