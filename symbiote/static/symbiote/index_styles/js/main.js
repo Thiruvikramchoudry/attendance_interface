@@ -76,7 +76,7 @@
                     backgroundColor: "#0be8b0"
                 },
                 {
-                    label: "Absentism",
+                    label: "Late Entry",
                     data: get_data(3),
                     backgroundColor: "#f33e53"
                 },
@@ -108,7 +108,7 @@
                     fill: true
                 },
                 {
-                    label: "Absentism",
+                    label: "Late Entry",
                     data: get_data(3),
                     backgroundColor: "rgb(255,2,61)",
                     fill: true

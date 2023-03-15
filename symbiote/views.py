@@ -3,6 +3,7 @@ from django.contrib.auth.models import User, auth
 from django.contrib.auth import authenticate
 from .models import details,attendence_area,absenteism_count
 import datetime,json
+import pandas as pd
 
 # Create your views here.
 
@@ -79,5 +80,96 @@ def add_employee(request):
         return redirect('sample')
     return render(request,'symbiote/add_employee.html',{'username':"sample"})
 
-def admin(request):
-    return render(request,'admin')
+
+
+def save_excel(request):
+    employee=details.objects.all()
+    emp_id=[]
+    for i in employee:
+        emp_id.append(i.Employee_id)
+    today_status=attendence_area.objects.filter(Date=datetime.date.today())
+    late_entry=[];present=[]
+    for i in today_status:
+        time=i.Time
+        time = str((time)).split(":")
+        hh = int(time[0])
+        mm = int(time[1])
+        ss = int(time[2])
+        if hh > 10 or (hh == 10 and mm != 0):
+            late_entry.append(i.Employee_id)
+        else:
+            present.append(i.Employee_id)
+    lateandpresent=present+late_entry
+    absent_entry=set(emp_id)-set(lateandpresent)
+    status=[]
+    for i in emp_id:
+        if i in late_entry:
+            status.append([i,"Late"])
+        elif i in present:
+            status.append([i,"present"])
+        elif i in absent_entry:
+            status.append([i,"absent"])
+
+    print(status)
+    df = pd.DataFrame(status, columns=['Employee_Id', 'Status'])
+    print(df)
+    date=datetime.datetime.now()
+    df.to_excel((str(date)+".xlsx"))
+    return redirect('sample')
+
+def save_clear(request):
+    employee = details.objects.all()
+    emp_id = []
+    for i in employee:
+        emp_id.append(i.Employee_id)
+    today_status = attendence_area.objects.filter(Date=datetime.date.today())
+    late_entry = []
+    present = []
+    for i in today_status:
+        time = i.Time
+        time = str((time)).split(":")
+        hh = int(time[0])
+        mm = int(time[1])
+        ss = int(time[2])
+        if hh > 10 or (hh == 10 and mm != 0):
+            late_entry.append(i.Employee_id)
+        else:
+            present.append(i.Employee_id)
+    lateandpresent = present + late_entry
+    absent_entry = set(emp_id) - set(lateandpresent)
+    status = []
+    for i in emp_id:
+        if i in late_entry:
+            status.append([i, "Late"])
+        elif i in present:
+            status.append([i, "present"])
+        elif i in absent_entry:
+            status.append([i, "absent"])
+
+    print(status)
+    df = pd.DataFrame(status, columns=['Employee_Id', 'Status'])
+    print(df)
+    date = datetime.datetime.now()
+    df.to_excel((str(date) + ".xlsx"))
+    clear(request)
+
+
+def download_stats(request):
+    return render(request,'symbiote/download_files.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
