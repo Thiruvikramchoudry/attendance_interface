@@ -147,7 +147,6 @@ def save_clear(request):
         elif i in absent_entry:
             status.append([i, "absent"])
 
-    print(status)
     df = pd.DataFrame(status, columns=['Employee_Id', 'Status'])
     date=datetime.datetime.today().date()
     df.to_excel("symbiote/static/symbiote/index_styles/attendance_status_files/"+(str(date) + ".xlsx"))
