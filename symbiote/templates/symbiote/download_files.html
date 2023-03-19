@@ -51,16 +51,16 @@
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
-                        <img class="rounded-circle" src="{%  static 'symbiote/index_styles/img/user.jpg' %}" alt="" style="width: 40px; height: 40px;">
+                        <img class="rounded-circle" src="{%  static 'symbiote/index_styles/img/img2.png' %}" alt="" style="width: 40px; height: 40px;">
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0" style="color: #F2F2F0" onclick="get_data()">Jhon Doe</h6>
+                        <h6 class="mb-0" style="color: #F2F2F0" onclick="get_data()">VIKRAM</h6>
                         <span>Admin</span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="{% url 'sample' %}" class="nav-item nav-link " ><i class="fa fa-tachometer-alt me-2"></i><span style="color: #F2F2F0">Dashboard</span></a>
+                    <a href="{% url 'main' %}" class="nav-item nav-link " ><i class="fa fa-tachometer-alt me-2"></i><span style="color: #F2F2F0">Dashboard</span></a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i><span style="color: #F2F2F0">Clear Data</span></a>
                         <div class="dropdown-menu bg-transparent border-0">
@@ -72,7 +72,7 @@
                     <a href="{% url 'employee_details' %}" class="nav-item nav-link"><i class="fa fa-th me-2"></i><span style="color: #F2F2F0">Empoloyee Details</span></a>
                     <a href="{% url 'attendance_status' %}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i><span style="color: #F2F2F0">Attendance Status</span></a>
                     <a href="{% url 'add_employee' %}" class="nav-item nav-link"><i class="fa fa-table me-2"></i><span style="color: #F2F2F0">Add Employee</span></a>
-                    <a href="{% url 'download_stats' %}" class="nav-item nav-link active"><i class="fa fa-chart-bar me-2"></i><span style="color: #F2F2F0">Download Stats</span></a>
+                    <a href="{% url 'download_stats' %}" class="nav-item nav-link active"><i class="fa fa-chart-bar me-2"></i><span style="color: #F2F2F0">Manual Attendance</span></a>
 
                 </div>
             </nav>
@@ -95,11 +95,11 @@
                 <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
                     <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
                 </a>
-                <a href="#" class="sidebar-toggler flex-shrink-0">
+                <a href="#" class="sidebar-toggler flex-shrink-0" style="background-color: #222f41">
                     <i class="fa fa-bars"></i>
                 </a>
                 <form class="d-none d-md-flex ms-4" style="width: 100%;">
-                    <input class="form-control border-0" type="search" placeholder="Search" style="width: 50%;background: aliceblue;">
+                    <input class="form-control border-0" type="search" placeholder="Search" style="width: 50%;background: aliceblue;background-color: #222f41;color: snow"">
                 </form>
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
@@ -107,7 +107,7 @@
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">
                                 <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="{%  static 'symbiote/index_styles/img/user.jpg' %}" alt="" style="width: 40px; height: 40px;">
+                                    <img class="rounded-circle" src="{%  static 'symbiote/index_styles/img/img2.png' %}" alt="" style="width: 40px; height: 40px;">
                                     <div class="ms-2">
                                         <h6 class="fw-normal mb-0">Jhon send you a message</h6>
                                         <small>15 minutes ago</small>
@@ -117,7 +117,7 @@
                             <hr class="dropdown-divider">
                             <a href="#" class="dropdown-item">
                                 <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="{%  static 'symbiote/index_styles/img/user.jpg' %}" alt="" style="width: 40px; height: 40px;">
+                                    <img class="rounded-circle" src="{%  static 'symbiote/index_styles/img/img2.png' %}" alt="" style="width: 40px; height: 40px;">
                                     <div class="ms-2">
                                         <h6 class="fw-normal mb-0">Jhon send you a message</h6>
                                         <small>15 minutes ago</small>
@@ -127,7 +127,7 @@
                             <hr class="dropdown-divider">
                             <a href="#" class="dropdown-item">
                                 <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="{%  static 'symbiote/index_styles/img/user.jpg' %}" alt="" style="width: 40px; height: 40px;">
+                                    <img class="rounded-circle" src="{%  static 'symbiote/index_styles/img/img2.png' %}" alt="" style="width: 40px; height: 40px;">
                                     <div class="ms-2">
                                         <h6 class="fw-normal mb-0">Jhon send you a message</h6>
                                         <small>15 minutes ago</small>
@@ -161,8 +161,8 @@
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="{%  static 'symbiote/index_styles/img/user.jpg' %}" alt="" style="width: 40px; height: 40px;">
-                            <span class="d-none d-lg-inline-flex" style="color: #F2F2F0">John Doe</span>
+                            <img class="rounded-circle me-lg-2" src="{%  static 'symbiote/index_styles/img/img2.png' %}" alt="" style="width: 40px; height: 40px;">
+                            <span class="d-none d-lg-inline-flex" style="color: #F2F2F0">VIKRAM</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">My Profile</a>
@@ -172,28 +172,36 @@
                     </div>
                 </div>
             </nav>
+
+
+
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
-                    <div class="col-sm-6 col-xl-12">
-                        <div class="bg-light rounded  align-items-center  p-4">
-                            <select class="form-control" style="background-color: #222f41;color: whitesmoke;border: none;width: 22%;margin: auto" name="name" id="file_selector" onchange="path_specifier()">
-                                  <option selected style="background-color: #222f41;color: whitesmoke;border: none;text-align: center" >SELECT DATE</option>
-                                    {% for i in files_dir %}
-                                        <option style="text-align: center">{{ i }}</option>
-                                    {% endfor %}
-                              </select>
-                            <a id="dow_but" download href="{% static '' %}"><div  id="download_button">
-                                Download
-                            </div></a>
+                <div class="col-sm-12 ">
+                            <div class="bg-light rounded h-100 p-4">
+                                <br>
+                                <h3 class="card-title" style="text-align: center;color: cyan">MANUAL ATTENDANCE</h3>
+                                <br>
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <div class="row mb-3">
+                                        <label for="inputEmail3" class="col-sm-2 col-form-label" style="color: whitesmoke">EMPLOYEE ID</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="name" style="background: #222f41;border: none" name="emp_ID">
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <div style="position: relative;height: 70px;width: 100%;">
+                            <div style="position:absolute;bottom:25%;right: 47%;">
+                                <button class="btn  btn-rounded btn-fw" type="submit" style="background-color: #85CDFD ; color:black">SUBMIT</button>
+                            </div>
                         </div>
-                    </div>
+                                </form>
+                            </div>
+                        </div>
                 </div>
             </div>
-            <!-- Navbar End -->
-
-
-
-            <input type="text" style="display: none" value="" id="data_getter">
 
 
 
@@ -204,14 +212,9 @@
                 <div class="bg-light rounded-top p-4">
                     <div class="row">
                         <div class="col-12 col-sm-6 text-center text-sm-start">
-                            &copy; <a href="#">Your Site Name</a>, All Right Reserved. 
+                            &copy; <a href="#">SYMBIOTE</a>, All Right Reserved.
                         </div>
-                        <div class="col-12 col-sm-6 text-center text-sm-end">
-                            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                            Designed By <a href="https://htmlcodex.com">HTML Codex</a>
-                        </br>
-                        Distributed By <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
-                        </div>
+
                     </div>
                 </div>
             </div>
