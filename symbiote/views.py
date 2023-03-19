@@ -10,37 +10,7 @@ import os
 # Create your views here.
 
 def main(request):
-    data = attendence_area.objects.all()[:5]
-    total_count = len(details.objects.all())
-    date = datetime.date.today()
-    today_count = len(attendence_area.objects.filter(Date=date))
-    today_emp = attendence_area.objects.filter(Date=date)
-    late_entry = 0
-    for i in today_emp:
-        time = str((i.Time)).split(":")
-        print(time)
-        hh = int(time[0])
-        mm = int(time[1])
-        ss = int(time[2])
-        if hh > 10 or (hh == 10 and mm != 00):
-            late_entry += 1
-    record = absenteism_count.objects.all()
-    present_count = [];
-    total_person = [];
-    late_person = [];
-    preleave_person = [];
-    dates = []
-    for i in record[::-1][:6][::-1]:
-        present_count.append(i.Total_person - i.preleave_count - i.absent_count)
-        total_person.append(i.Total_person)
-        late_person.append(i.late_count)
-        preleave_person.append(i.preleave_count)
-        dates.append(i.Date)
-
-    return render(request, 'symbiote/index.html',
-                  {'username': "sample", 'details': data, 'total_count': total_count, 'today_count': today_count,
-                   'late_entry': late_entry, 'present_count': present_count, 'total_person': total_person,
-                   'late_person': late_person, 'preleave_person': preleave_person, 'dates': dates})
+    return render(request,'symbiote/login.html')
 
 
 def login(request):
@@ -106,9 +76,10 @@ def add_employee(request):
         gender= request.POST['gender']
         address = request.POST['address']
         phone=request.POST['phone_number']
+        image = request.POST.get("image")
         # emp=details(name=name,designation=designation,date_of_birth=date_of_birth,gender=gender,address=address,phone=phone)
         # emp.save()
-        print(name,designation,date_of_birth,gender,address,phone)
+        print(name,designation,date_of_birth,gender,address,phone,image)
         return redirect('sample')
     return render(request,'symbiote/add_employee.html',{'username':"sample"})
 
@@ -177,6 +148,7 @@ def save_clear(request):
         elif i in absent_entry:
             status.append([i, "absent"])
 
+    print(status)
     df = pd.DataFrame(status, columns=['Employee_Id', 'Status'])
     date=datetime.datetime.today().date()
     df.to_excel("symbiote/static/symbiote/index_styles/attendance_status_files/"+(str(date) + ".xlsx"))
@@ -190,7 +162,13 @@ def download_stats(request):
 
     return render(request,'symbiote/download_files.html',{"username":"sample","files_dir":dir_list})
 
-
+def login2(request):
+    if request.method=="POST":
+        user_name=request.POST['user_name']
+        password=request.POST['password']
+        print(user_name,password)
+        return redirect('login2')
+    return render(request,'symbiote/login2.html')
 
 
 
