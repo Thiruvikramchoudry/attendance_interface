@@ -4,7 +4,8 @@ from django.urls import path,include
 from . import views
 
 urlpatterns = [
-    path('',views.main,name="main"),
+    path('',views.login2),
+    path('home',views.main,name="home"),
     path('login', views.login, name="login"),
     path('sample',views.sample,name="sample"),
     path('clear_data',views.clear,name="clear_data"),
@@ -15,5 +16,6 @@ urlpatterns = [
     path('save_clean',views.save_clear,name="save_clean"),
     path('download_stats',views.download_stats,name="download_stats"),
     path('login2',views.login2,name="login2"),
+    path('logout',views.logout,name="logout")
 
 ]

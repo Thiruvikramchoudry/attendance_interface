@@ -14,12 +14,12 @@ class details(models.Model):
         return self.Employee_name
 
 class attendence_area(models.Model):
-    Employee_id=models.IntegerField()
-    Date=models.DateField(default=datetime.date.today())
-    Time=models.TimeField(default=datetime.datetime.now().time())
+    employee_id=models.IntegerField()
+    date=models.CharField(max_length=40,default=str(datetime.date.today()))
+    time=models.CharField(max_length=40,default=str(datetime.datetime.now().time()))
 
     def __str__(self):
-        return str(self.Employee_id)
+        return str(self.employee_id)
 
 
 class absenteism_count(models.Model):

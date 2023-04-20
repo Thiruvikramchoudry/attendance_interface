@@ -3,21 +3,26 @@ from django.contrib.auth.models import User, auth
 from django.contrib.auth import authenticate
 from .models import details,attendence_area,absenteism_count
 import datetime,json
-import pandas as pd
+#import pandas as pd
+import symbiote.main_db_connection as mdb
 import os
+
+
 
 
 # Create your views here.
 
 def main(request):
+
+    username=request.user
     data = attendence_area.objects.all()[:5]
     total_count = len(details.objects.all())
     date = datetime.date.today()
-    today_count = len(attendence_area.objects.filter(Date=date))
-    today_emp = attendence_area.objects.filter(Date=date)
+    today_count = len(attendence_area.objects.filter(date=date))
+    today_emp = attendence_area.objects.filter(date=date)
     late_entry = 0
     for i in today_emp:
-        time = str((i.Time)).split(":")
+        time = str((i.time)).split(":")
         print(time)
         hh = int(time[0])
         mm = int(time[1])
@@ -36,10 +41,10 @@ def main(request):
         total_person.append(i.Total_person)
         late_person.append(i.late_count)
         preleave_person.append(i.preleave_count)
-        dates.append(i.Date)
+        dates.append(i.date)
 
     return render(request, 'symbiote/index.html',
-                  {'username': "VIKRAM", 'details': data, 'total_count': total_count, 'today_count': today_count,
+                  {'username': username, 'details': data, 'total_count': total_count, 'today_count': today_count,
                    'late_entry': late_entry, 'present_count': present_count, 'total_person': total_person,
                    'late_person': late_person, 'preleave_person': preleave_person, 'dates': dates})
 
@@ -50,25 +55,25 @@ def login(request):
     password=request.POST['password']
     user = authenticate(username=username, password=password)
     if user is not None:
+        print("hoem")
         auth.login(request, user)
-        data=attendence_area.objects.all()[:5]
-        return render(request,'symbiote/index.html',{'username':username,'details':data})
-    return redirect('/')
+        return redirect('/home')
+    else:
+        return redirect('/')
 
 
 def sample(request):
     data = attendence_area.objects.all()[:5]
     total_count=len(details.objects.all())
     date=datetime.date.today()
-    today_count=len(attendence_area.objects.filter(Date=date))
-    today_emp=attendence_area.objects.filter(Date=date)
+    today_count=len(attendence_area.objects.filter(date=date))
+    today_emp=attendence_area.objects.filter(date=date)
     late_entry=0
     for i in today_emp:
         time=str((i.Time)).split(":")
         print(time)
         hh=int(time[0])
         mm=int(time[1])
-        ss=int(time[2])
         if hh>10 or (hh==10 and mm!=00 ):
             late_entry+=1
     record=absenteism_count.objects.all()
@@ -78,21 +83,22 @@ def sample(request):
         total_person.append(i.Total_person)
         late_person.append(i.late_count)
         preleave_person.append(i.preleave_count)
-        dates.append(i.Date)
+        dates.append(i.date)
 
 
-    return render(request, 'symbiote/index.html', {'username': "VIKRAM", 'details': data,'total_count':total_count,'today_count':today_count,'late_entry':late_entry,'present_count':present_count,'total_person':total_person,'late_person':late_person,'preleave_person':preleave_person,'dates':dates})
+    return render(request, 'symbiote/index.html', {'username': request.user, 'details': data,'total_count':total_count,'today_count':today_count,'late_entry':late_entry,'present_count':present_count,'total_person':total_person,'late_person':late_person,'preleave_person':preleave_person,'dates':dates})
 
 
 
 def clear(request):
     data=attendence_area.objects.all()
     data.delete()
-    return redirect('sample')
+    mdb.delete_attendence()
+    return redirect('/')
 
 def employee_detail(request):
     Employee_data=details.objects.all()
-    return render(request,'symbiote/employee_details.html',{'username':'VIKRAM','details':Employee_data})
+    return render(request,'symbiote/employee_details.html',{'username':request.user,'details':Employee_data})
 
 
 def attendance_status(request):
@@ -100,7 +106,7 @@ def attendance_status(request):
     for i in range(len(dir_list)):
         dir_list[i] = dir_list[i].split(".")[0]
     data = attendence_area.objects.all()[:5]
-    return render(request,'symbiote/attendance_status.html',{'username': "VIKRAM","files_dir":dir_list,'details':data})
+    return render(request,'symbiote/attendance_status.html',{'username': request.user,"files_dir":dir_list,'details':data})
 
 
 def add_employee(request):
@@ -118,7 +124,7 @@ def add_employee(request):
         print(name,designation,date_of_birth,gender,address,phone,image)
         return redirect('sample')
 
-    return render(request,'symbiote/add_employee.html',{'username':"VIKRAM", 'details': data})
+    return render(request,'symbiote/add_employee.html',{'username':request.user, 'details': data})
 
 
 
@@ -127,14 +133,14 @@ def save_excel(request):
     emp_id=[]
     for i in employee:
         emp_id.append(i.Employee_id)
-    today_status=attendence_area.objects.filter(Date=datetime.date.today())
+    today_status=attendence_area.objects.filter(date=datetime.date.today())
     late_entry=[];present=[]
     for i in today_status:
         time=i.Time
         time = str((time)).split(":")
         hh = int(time[0])
         mm = int(time[1])
-        ss = int(time[2])
+
         if hh > 10 or (hh == 10 and mm != 0):
             late_entry.append(i.Employee_id)
         else:
@@ -150,18 +156,19 @@ def save_excel(request):
         elif i in absent_entry:
             status.append([i,"absent"])
 
-    print(status)
-    df = pd.DataFrame(status, columns=['Employee_Id', 'Status'])
+
+    #df = pd.DataFrame(status, columns=['Employee_Id', 'Status'])
     date=datetime.datetime.today().date()
-    df.to_excel("symbiote/static/symbiote/index_styles/attendance_status_files/"+(str(date) + ".xlsx"))
+    #df.to_excel("symbiote/static/symbiote/index_styles/attendance_status_files/"+(str(date) + ".xlsx"))
     return redirect('sample')
 
 def save_clear(request):
+    print("yes")
     employee = details.objects.all()
     emp_id = []
     for i in employee:
         emp_id.append(i.Employee_id)
-    today_status = attendence_area.objects.filter(Date=datetime.date.today())
+    today_status = attendence_area.objects.filter(date=datetime.date.today())
     late_entry = []
     present = []
     for i in today_status:
@@ -169,7 +176,6 @@ def save_clear(request):
         time = str((time)).split(":")
         hh = int(time[0])
         mm = int(time[1])
-        ss = int(time[2])
         if hh > 10 or (hh == 10 and mm != 0):
             late_entry.append(i.Employee_id)
         else:
@@ -186,28 +192,39 @@ def save_clear(request):
             status.append([i, "absent"])
 
     print(status)
-    df = pd.DataFrame(status, columns=['Employee_Id', 'Status'])
+
+    #df = pd.DataFrame(status, columns=['Employee_Id', 'Status'])
     date=datetime.datetime.today().date()
-    df.to_excel("symbiote/static/symbiote/index_styles/attendance_status_files/"+(str(date) + ".xlsx"))
-    clear(request)
+    #df.to_excel("symbiote/static/symbiote/index_styles/attendance_status_files/"+(str(date) + ".xlsx"))
+    data = attendence_area.objects.all()
+    data.delete()
+    return redirect('/')
 
 
 def download_stats(request):
     if request.method=="POST":
         EMP_ID= request.POST['emp_ID']
-        detail=attendence_area(Employee_id=EMP_ID)
+        detail=attendence_area(employee_id=EMP_ID)
+        mdb.add(EMP_ID)
         detail.save()
         return redirect('download_stats')
 
-    return render(request,'symbiote/download_files.html',{"username":"VIKRAM"})
+    return render(request,'symbiote/download_files.html',{"username":request.user})
 
 def login2(request):
     if request.method=="POST":
         user_name=request.POST['user_name']
         password=request.POST['password']
         print(user_name,password)
+
+
         return redirect('login2')
     return render(request,'symbiote/login2.html')
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
 
 
 

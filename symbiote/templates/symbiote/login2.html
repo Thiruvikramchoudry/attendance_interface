@@ -43,40 +43,7 @@
         <!-- Spinner End -->
 
 
-        <!-- Sidebar Start -->
-        <div class="sidebar pe-4 pb-3" style="background: #1B2430">
-            <nav class="navbar  navbar-light" >
-                <a href="" class="navbar-brand mx-4 mb-3">
-                    <h3 class="text-primary" style="color: #85CDFD" ><i class="fa fa-hashtag me-2"></i>{{ username }}</h3>
-                </a>
-                <div class="d-flex align-items-center ms-4 mb-4">
-                    <div class="position-relative">
-                        <img class="rounded-circle" src="{%  static 'symbiote/index_styles/img/user.jpg' %}" alt="" style="width: 40px; height: 40px;">
-                        <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
-                    </div>
-                    <div class="ms-3">
-                        <h6 class="mb-0" style="color: #F2F2F0" onclick="get_data()">Jhon Doe</h6>
-                        <span>Admin</span>
-                    </div>
-                </div>
-                <div class="navbar-nav w-100">
-                    <a href="{% url 'sample' %}" class="nav-item nav-link active" ><i class="fa fa-tachometer-alt me-2"></i><span style="color: #F2F2F0">Dashboard</span></a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i><span style="color: #F2F2F0">Clear Data</span></a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a href="{% url 'clear_data' %}" class="dropdown-item" style="color: whitesmoke">Clear Updates</a>
-                            <a href="" class="dropdown-item" style="color: whitesmoke">Save & Clear</a>
-                            <a href="{% url 'save_data' %}" class="dropdown-item" style="color: whitesmoke">Just Save</a>
-                        </div>
-                    </div>
-                    <a href="{% url 'employee_details' %}" class="nav-item nav-link"><i class="fa fa-th me-2"></i><span style="color: #F2F2F0">Empoloyee Details</span></a>
-                    <a href="{% url 'attendance_status' %}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i><span style="color: #F2F2F0">Attendance Status</span></a>
-                    <a href="{% url 'add_employee' %}" class="nav-item nav-link"><i class="fa fa-table me-2"></i><span style="color: #F2F2F0">Add Employee</span></a>
-                    <a href="{% url 'download_stats' %}" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i><span style="color: #F2F2F0">Download Stats</span></a>
 
-                </div>
-            </nav>
-        </div>
         <div style="display: none">
             <div id="present_count">{{ present_count }}</div>
             <div id="total_person">{{ total_person }}</div>
@@ -89,18 +56,10 @@
 
 
         <!-- Content Start -->
-        <div class="content">
+        <div class="content open" style="margin-top: 4rem">
             <!-- Navbar Start -->
             <nav class="navbar navbar-expand   sticky-top px-4 py-0" style="background: #1B2430">
-                <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
-                    <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
-                </a>
-                <a href="#" class="sidebar-toggler flex-shrink-0">
-                    <i class="fa fa-bars"></i>
-                </a>
-                <form class="d-none d-md-flex ms-4" style="width: 100%;">
-                    <input class="form-control border-0" type="search" placeholder="Search" style="width: 50%;background: aliceblue;">
-                </form>
+
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
 
@@ -138,38 +97,8 @@
                             <a href="#" class="dropdown-item text-center">See all message</a>
                         </div>
                     </div>
-                    <div class="nav-item dropdown">
 
-                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">Profile updated</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">New user added</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">Password changed</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item text-center">See all notifications</a>
-                        </div>
-                    </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="{%  static 'symbiote/index_styles/img/user.jpg' %}" alt="" style="width: 40px; height: 40px;">
-                            <span class="d-none d-lg-inline-flex" style="color: #F2F2F0">John Doe</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">My Profile</a>
-                            <a href="#" class="dropdown-item">Settings</a>
-                            <a href="#" class="dropdown-item">Log Out</a>
-                        </div>
-                    </div>
+
                 </div>
             </nav>
             <!-- Navbar End -->
@@ -181,20 +110,21 @@
                 <div class="col-sm-12 ">
                             <div class="bg-light rounded h-100 p-4">
                                 <br>
-                                <h3 class="card-title" style="text-align: center;color: cyan">LOGIN</h3>
+                                <h3 class="card-title" style="text-align: center;color: cyan;font-size: 30px;">LOGIN</h3>
                                 <br>
-                                <form method="post">
+                                <form method="post" action="{% url 'login' %}" >
                                     {% csrf_token %}
-                                    <div class="row mb-4">
-                                        <label for="inputEmail3" class="col-sm-12 col-form-label" style="color: whitesmoke;text-align: center">USER NAME</label>
+                                    <div class="row mb-3" style="padding-left: 15%;">
 
-                                        <div class="col-sm-6 mx-auto">
-                                            <input type="text" class="form-control" id="user_name" style="background: #222f41;border: none" name="user_name">
+                                        <label for="inputEmail3" class="col-sm-2 col-form-label" style="color: whitesmoke;text-align: center">USER NAME</label>
+
+                                        <div class="col-sm-6" style=";margin-left: 0px">
+                                            <input type="text" class="form-control" id="user_name" style="background: #222f41;border: none" name="username">
                                         </div>
                                     </div>
-                                    <div class="row sm-12">
-                                        <label for="inputPassword3" class="col-sm-12 col-form-label" style="color: whitesmoke;text-align: center;">PASSWORD</label>
-                                        <div class="col-sm-6 mx-auto">
+                                    <div class="row sm-12" style="padding-left: 15%;">
+                                        <label for="inputPassword3" class="col-sm-2 col-form-label" style="color: whitesmoke;text-align: center;">PASSWORD</label>
+                                        <div class="col-sm-6" style=";margin-left: 0px">
                                             <input type="text" class="form-control" id="password" style="background: #222f41;border: none" name="password">
                                         </div>
                                     </div>
@@ -205,7 +135,7 @@
                                 <button class="btn  btn-rounded btn-fw" type="submit" style="background-color: #85CDFD ; color:black">SUBMIT</button>
                             </div>
                         </div>
-{#
+
                                 </form>
                             </div>
                         </div>
@@ -215,17 +145,11 @@
             <!-- Main Content End -->
 
             <!-- Footer Start -->
-            <div class="container-fluid pt-4 px-4">
+            <div class="container-fluid pt-4 px-4" style="margin-top: 6rem;">
                 <div class="bg-light rounded-top p-4">
                     <div class="row">
                         <div class="col-12 col-sm-6 text-center text-sm-start">
-                            &copy; <a href="#">Your Site Name</a>, All Right Reserved.
-                        </div>
-                        <div class="col-12 col-sm-6 text-center text-sm-end">
-                            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                            Designed By <a href="https://htmlcodex.com">HTML Codex</a>
-                        </br>
-                        Distributed By <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                            &copy; <a href="#">Your Site Name</a>, Symbiote
                         </div>
                     </div>
                 </div>
