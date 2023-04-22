@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User, auth
 from django.contrib.auth import authenticate
 #from .models import details,attendence_area,absenteism_count
-from .models import supervisor_detail
+from .models import supervisor_detail,supervisor_assign
 import datetime,json
 #import pandas as pd
 import symbiote.main_db_connection as mdb
@@ -64,6 +64,9 @@ def login(request):
             return render(request, 'symbiote/login.html', {'message': "Invalid credientials"})
     else:
         return render(request,'symbiote/login.html', {'message': ""})
+
+def admin_page(request):
+    return render(request,'symbiote/admin_page.html')
 
 
 def sample(request):
@@ -236,12 +239,19 @@ def login_supervisor(request):
         username=request.POST["username"]
         password=request.POST["password"]
         if len(supervisor_detail.objects.filter(username=username,password=password))!=0:
-            return redirect('supervisor_page')
+            if len(supervisor_assign.objects.filter(supervisor_username=username)) != 0:
+                return redirect('home')
+            else:
+                return render(request, 'symbiote/no_assign.html',{'username':username})
+
         else:
             print("no account")
+
             return render(request,'symbiote/login2.html',{'message':'Incorrect Credientials'})
     else:
         return render(request,'symbiote/login2.html',{'message':''})
+
+
 
 
 

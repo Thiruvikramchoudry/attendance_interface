@@ -20,12 +20,12 @@ class employee_details(models.Model):
 
 
 class supervisor_assign(models.Model):
-    supervisor_name=models.CharField(max_length=100)
+    supervisor_username=models.CharField(max_length=100)
     assign_work_at=models.IntegerField()
     employee_list=models.FileField(upload_to='employee_assign')
 
     def __str__(self):
-        return str(self.supervisor_name)
+        return str(self.supervisor_username)
 
 class supervisor_detail(models.Model):
     supervisor_name=models.CharField(max_length=100)

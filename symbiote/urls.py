@@ -18,5 +18,7 @@ urlpatterns = [
     path('login2',views.login2,name="login2"),
     path('logout',views.logout,name="logout"),
     path('login_supervisor',views.login_supervisor,name="login_supervisor"),
+    path('admin_page',views.admin_page,name="admin_page"),
+    path('supervisor_page',views.main,name="supervisor_page"),
 
 ]
