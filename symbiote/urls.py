@@ -6,7 +6,7 @@ from . import views
 urlpatterns = [
     path('',views.login2),
     path('home',views.main,name="home"),
-    path('login', views.login, name="login"),
+    path('login_admin', views.login, name="login_admin"),
     path('sample',views.sample,name="sample"),
     path('clear_data',views.clear,name="clear_data"),
     path('employee_details',views.employee_detail,name="employee_details"),
@@ -16,6 +16,7 @@ urlpatterns = [
     path('save_clean',views.save_clear,name="save_clean"),
     path('download_stats',views.download_stats,name="download_stats"),
     path('login2',views.login2,name="login2"),
-    path('logout',views.logout,name="logout")
+    path('logout',views.logout,name="logout"),
+    path('login_supervisor',views.login_supervisor,name="login_supervisor"),
 
 ]

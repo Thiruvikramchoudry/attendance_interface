@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User, auth
 from django.contrib.auth import authenticate
 #from .models import details,attendence_area,absenteism_count
+from .models import supervisor_detail
 import datetime,json
 #import pandas as pd
 import symbiote.main_db_connection as mdb
@@ -52,14 +53,17 @@ def main(request):
 
 
 def login(request):
-    username=request.POST['username']
-    password=request.POST['password']
-    user = authenticate(username=username, password=password)
-    if user is not None:
-        auth.login(request, user)
-        return redirect('/home')
+    if request.method=="POST":
+        username=request.POST['username']
+        password=request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            auth.login(request, user)
+            return redirect('/admin_page')
+        else:
+            return render(request, 'symbiote/login.html', {'message': "Invalid credientials"})
     else:
-        return redirect('/')
+        return render(request,'symbiote/login.html', {'message': ""})
 
 
 def sample(request):
@@ -225,6 +229,20 @@ def login2(request):
 def logout(request):
     auth.logout(request)
     return redirect('/')
+
+
+def login_supervisor(request):
+    if request.method=="POST":
+        username=request.POST["username"]
+        password=request.POST["password"]
+        if len(supervisor_detail.objects.filter(username=username,password=password))!=0:
+            return redirect('supervisor_page')
+        else:
+            print("no account")
+            return render(request,'symbiote/login2.html',{'message':'Incorrect Credientials'})
+    else:
+        return render(request,'symbiote/login2.html',{'message':''})
+
 
 
 

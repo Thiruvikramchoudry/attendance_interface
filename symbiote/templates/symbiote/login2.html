@@ -108,11 +108,14 @@
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
                 <div class="col-sm-12 ">
+                    {%  if message != "" %}
+                    <div class="alert alert-danger">{{ message }}</div>
+                    {% endif %}
                             <div class="bg-light rounded h-100 p-4">
                                 <br>
-                                <h3 class="card-title" style="text-align: center;color: cyan;font-size: 30px;">LOGIN</h3>
+                                <h3 class="card-title" style="text-align: center;color: cyan;font-size: 30px;">LOGIN(Supervisor)</h3>
                                 <br>
-                                <form method="post" action="{% url 'login' %}" >
+                                <form method="post" action="{% url 'login_supervisor' %}" >
                                     {% csrf_token %}
                                     <div class="row mb-3" style="padding-left: 15%;">
 
