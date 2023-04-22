@@ -1,11 +1,12 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User, auth
 from django.contrib.auth import authenticate
-from .models import details,attendence_area,absenteism_count
+#from .models import details,attendence_area,absenteism_count
 import datetime,json
 #import pandas as pd
 import symbiote.main_db_connection as mdb
 import os
+import cv2
 
 
 
@@ -55,7 +56,6 @@ def login(request):
     password=request.POST['password']
     user = authenticate(username=username, password=password)
     if user is not None:
-        print("hoem")
         auth.login(request, user)
         return redirect('/home')
     else:

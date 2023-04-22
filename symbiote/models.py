@@ -3,34 +3,52 @@ import datetime
 
 # Create your models here.
 
-class details(models.Model):
-    Employee_name=models.CharField(max_length=40)
-    Employee_id=models.IntegerField()
-    Employee_age=models.IntegerField()
-    Employee_gender=models.CharField(max_length=6)
-
-
-    def __str__(self):
-        return self.Employee_name
-
-class attendence_area(models.Model):
+class employee_details(models.Model):
+    employee_name=models.CharField(max_length=40)
     employee_id=models.IntegerField()
-    date=models.CharField(max_length=40,default=str(datetime.date.today()))
-    time=models.CharField(max_length=40,default=str(datetime.datetime.now().time()))
+    employee_age=models.IntegerField()
+    employee_gender=models.CharField(max_length=6)
+    employee_location=models.CharField(max_length=100)
+    aadhar_card=models.IntegerField()
+    working_status=models.BooleanField(default=False)
 
     def __str__(self):
-        return str(self.employee_id)
+        return self.employee_name
 
 
-class absenteism_count(models.Model):
-    Date=models.DateField(default=datetime.date.today())
-    Total_person=models.IntegerField(null=True,default=0)
-    absent_count=models.IntegerField(null=True,default=0)
-    late_count=models.IntegerField(null=True,default=0)
-    preleave_count=models.IntegerField(null=True,default=0)
+
+
+
+class supervisor_assign(models.Model):
+    supervisor_name=models.CharField(max_length=100)
+    assign_work_at=models.IntegerField()
+    employee_list=models.FileField(upload_to='employee_assign')
 
     def __str__(self):
-        return str(self.Date)
+        return str(self.supervisor_name)
+
+class supervisor_detail(models.Model):
+    supervisor_name=models.CharField(max_length=100)
+    status=models.BooleanField(default=False)
+    username=models.CharField(max_length=100)
+    password=models.CharField(max_length=100)
+
+    def __str__(self):
+        return str(self.supervisor_name)
+
+class project(models.Model):
+    project_id=models.IntegerField()
+    project_area=models.CharField(max_length=100)
+    employee_required=models.IntegerField()
+    status=models.CharField(max_length=100)
+
+    def __str__(self):
+        return str(self.project_id)
+
+
+
+
+
 
 
 

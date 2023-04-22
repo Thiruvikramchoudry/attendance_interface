@@ -1,8 +1,11 @@
 from django.contrib import admin
-from .models import details,attendence_area,absenteism_count
+from .models import employee_details,supervisor_detail,supervisor_assign,project
 # Register your models here.
 
 
-admin.site.register(details)
-admin.site.register(attendence_area)
-admin.site.register(absenteism_count)
+admin.site.register(employee_details)
+admin.site.register(supervisor_assign)
+admin.site.register(supervisor_detail)
+admin.site.register(project)
+
+
