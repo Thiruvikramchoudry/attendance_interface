@@ -1,0 +1,589 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- ===============================================-->
+    <!--    Document Title-->
+    <!-- ===============================================-->
+    <title>MGNREGA</title>
+
+
+    <!-- ===============================================-->
+    <!--    Favicons-->
+    <!-- ===============================================-->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'symbiote/home_style/assets/img/favicons/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'symbiote/home_style/assets/img/favicons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'symbiote/home_style/assets/img/favicons/favicon-16x16.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'symbiote/home_style/assets/img/favicons/favicon.ico' %}">
+    <link rel="manifest" href="{% static 'symbiote/home_style/assets/img/favicons/manifest.json' %}">
+    <meta name="msapplication-TileImage" content="{% static 'symbiote/home_style/assets/img/favicons/mstile-150x150.png' %}">
+    <meta name="theme-color" content="#ffffff">
+      <link rel="stylesheet" href="{% static 'symbiote/home_style/assets/css/contact.css' %}">
+
+
+    <!-- ===============================================-->
+    <!--    Stylesheets-->
+    <!-- ===============================================-->
+    <link href="{% static 'symbiote/home_style/assets/css/theme.css' %}" rel="stylesheet" />
+
+  </head>
+
+
+  <body>
+
+    <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    <main class="main" id="top">
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 bg-light opacity-85" data-navbar-on-scroll="data-navbar-on-scroll"> <!-- src="{% static 'symbiote/home_style/assets/img/gallery/logo-icon.png' %}"-->
+        <div class="container"><a class="navbar-brand" href="index.html"><img class="d-inline-block align-top img-fluid"  alt="" width="50" /><span class="text-theme font-monospace fs-4 ps-2">MGNREA</span></a>
+          <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item px-2"><a class="nav-link fw-medium active" aria-current="page" href="#header">HOME</a></li>
+              <li class="nav-item px-2"><a class="nav-link fw-medium" href="#Opportuanities">OPPORTUNITIES</a></li>
+{#              <li class="nav-item px-2"><a class="nav-link fw-medium" href="#testimonial">Testimonial</a></li>#}
+              <li class="nav-item px-2"><a class="nav-link fw-medium" href="#procedure">PROCEDURE</a></li>
+              <li class="nav-item px-2"><a class="nav-link fw-medium" href="#live">INFORMATION </a></li>
+                <li class="nav-item px-2"><a class="nav-link fw-medium" href="#contact">CONTACT </a></li>
+            </ul>
+{#            <form class="d-flex">#}
+{#              <button id="signin-dropdown" class="btn btn-lg btn-dark bg-gradient dropdown-toggle order-0" type="submit" data-bs-toggle="dropdown" aria-expanded="false">SIGN UP</button>#}
+{#              <ul class="dropdown-menu" aria-labelledby="signin-dropdown">#}
+{#    <li><a class="dropdown-item" href="#">Employee Login</a></li>#}
+{#    <li><a class="dropdown-item" href="#">Student Login</a></li>#}
+{#  </ul>#}
+{#                <button class="btn btn-lg btn-dark bg-gradient order-0" type="submit" style="margin-left: 13px">SIGN IN</button>#}
+
+
+              <div class="btn-group" role="group">
+                  <div class="dropdown">
+    <button id="signin-dropdown" type="button" class="btn btn-lg btn-dark bg-gradient dropdown-toggle order-0" data-bs-toggle="dropdown" aria-expanded="false">
+      SIGN IN
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="signin-dropdown" style="background-color: #1F1534;border-color: #19112a">
+      <li><a class="dropdown-item" href="{% url 'add_employee' %}" style="background-color: #1F1534;border-color: #19112a;color: white;text-align: center">EMPLOYEE </a></li>
+{#      <li><a class="dropdown-item" href="#" style="background-color: #1F1534;border-color: #19112a;color: white;text-align: center">SUPERVISOR</a></li>#}
+    </ul>
+  </div>
+  <div class="dropdown">
+    <button id="signup-dropdown" type="button" class="btn btn-lg btn-dark bg-gradient dropdown-toggle order-0" data-bs-toggle="dropdown" aria-expanded="false"  style="margin-left: 20px">
+      SIGN UP
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="signup-dropdown" style="background-color: #1F1534;border-color: #19112a">
+      <li><a class="dropdown-item" href="{%  url 'login_supervisor' %}" style="background-color: #1F1534;border-color: #19112a;color: white;text-align: center">SUPERVISOR</a></li>
+      <li><a class="dropdown-item" href="{% url 'login_admin' %}" style="background-color: #1F1534;border-color: #19112a;color: white;text-align: center">ADMIN</a></li>
+    </ul>
+  </div>
+</div>
+
+{#            </form>#}
+          </div>
+        </div>
+      </nav>
+      <section class="py-0" id="header">
+        <div class="bg-holder d-none d-md-block" style="background-image:url({% static 'symbiote/home_style/assets/img/illustrations/hero-header.png' %});background-position:right top;background-size:contain;">
+        </div>
+        <!--/.bg-holder-->
+
+{#        <div class="bg-holder d-md-none" style="background-image:url({% static 'assets/img/illustrations/hero-bg.png' %});background-position:right top;background-size:contain;">#}
+{#          <div class="bg-holder d-md-none" >#}
+        </div>
+        <!--/.bg-holder-->
+
+        <div class="container">
+          <div class="row align-items-center min-vh-75 min-vh-lg-100">
+            <div class="col-md-7 col-lg-6 col-xxl-5 py-6 text-sm-start text-center">
+              <h1 class="mt-6 mb-sm-4 fw-semi-bold lh-sm fs-4 fs-lg-5 fs-xl-6">MAHATMA GANDHI NATIONAL RURAL EMPLOYMENT GUARANTEE ACT 2005<br class="d-block d-lg-block" /></h1>
+              <p class="mb-4 fs-1">MGNREGA is a social welfare scheme in India that provides rural households with employment opportunities for 100 days a year, aimed at rural development through unskilled manual work.</p>
+                <div>
+                    <a style="cursor: pointer;" class="btn btn-primary" target="_blank" href="https://nrega.nic.in/Nregahome/MGNREGA_new/Nrega_home.aspx" >VISIT</a>
+                </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="py-5" id="Opportuanities">
+        <div class="bg-holder d-none d-sm-block" style="background-image:url({% static 'symbiote/home_style/assets/img/illustrations/bg.png' %});background-position:top left;background-size:225px 755px;margin-top:-8.0rem;">
+        </div>
+        <!--/.bg-holder-->
+
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-9 mx-auto text-center mb-3">
+              <h5 class="fw-bold fs-3 fs-lg-5 lh-sm mb-3">NEW OPPORTUNITIES</h5>
+              <p class="mb-5">MGNREGA creates rural jobs, develops skills, and generates income, ultimately improving the socio-economic conditions of rural communities.</p>
+            </div>
+          </div>
+          <div class="row flex-center h-100">
+            <div class="col-xl-9">
+              <div class="row">
+                <div class="col-md-4 mb-5">
+                  <div class="card h-100 shadow px-4 px-md-2 px-lg-3 card-span pt-6">
+                    <div class="text-center text-md-start card-hover"><img class="ps-3 icons" src="{% static 'symbiote/home_style/assets/img/icons/farmer.svg' %}" height="60" alt="" />
+                      <div class="card-body">
+                        <h6 class="fw-bold fs-1 heading-color">INFRASTRUCTURE DEVELOPMENT</h6>
+                        <p class="mt-3 mb-md-0 mb-lg-2">Creating employment opportunities for rural workers in the construction of public assets such as roads, canals, and ponds. Improved infrastructure benefits rural communities.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                  <div class="card h-100 shadow px-4 px-md-2 px-lg-3 card-span pt-6">
+                    <div class="text-center text-md-start card-hover"><img class="ps-3 icons" src="{% static 'symbiote/home_style/assets/img/icons/planting.svg' %}" height="60" alt="" />
+                      <div class="card-body">
+                        <h6 class="fw-bold fs-1 heading-color">RURAL AGRICULTURE DEVELOPMENT</h6>
+                        <p class="mt-3 mb-md-0 mb-lg-2">Creating employment opportunities for rural workers in agriculture-related activities such as land development, irrigation projects, and horticulture. This helps to improve the rural economy and enhances food security.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                  <div class="card h-100 shadow px-4 px-md-2 px-lg-3 card-span pt-6">
+                    <div class="text-center text-md-start card-hover"><img class="ps-3 icons" src="{% static 'symbiote/home_style/assets/img/icons/growth.svg' %}" height="60" alt="" />
+                      <div class="card-body">
+                        <h6 class="fw-bold fs-1 heading-color">WOMEN EMPOWERMENT</h6>
+                        <p class="mt-3 mb-md-0 mb-lg-2">Focuses on empowering women by promoting gender equality and encouraging their participation in the workforce. This helps to improve the economic and social well-being of rural women.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ============================================-->
+      <!-- <section> begin ============================-->
+      <section class="py-5" id="invest">
+
+{#        <div class="container">#}
+{#          <div class="row justify-content-center">#}
+{#            <div class="col-xl-9 mb-3">#}
+{#              <div class="row">#}
+{#                <div class="col-lg-9 mb-3">#}
+{#                  <h5 class="fw-bold fs-3 fs-lg-5 lh-sm mb-3">Invest on your convenience</h5>#}
+{#                  <p class="mb-5">Autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla</p>#}
+{#                </div>#}
+{#                <div class="col-md-6 mb-5">#}
+{#                  <div class="card text-white"><img class="card-img" src="{% static 'assets/img/illustrations/NCS1.cms' %}" alt="..." />#}
+{#                    <div class="card-img-overlay d-flex flex-column justify-content-center px-5 px-md-3 px-lg-5 bg-dark-gradient">#}
+{#                      <h6 class="text-success pt-2">NATIONAL CAREER SERVICES</h6>#}
+{#                      <hr class="text-white" style="height:0.12rem;width:2.813rem" />#}
+{#                      <div class="pt-lg-3">#}
+{#                        <h6 class="fw-bold text-white fs-1 fs-md-2 fs-lg-3 w-xxl-50">NATIONAL CAREER SERVICES</h6>#}
+{#                        <p class="w-xxl-75"> The platform aims to provide a range of career-related services to individuals across India, with a focus on promoting inclusive growth and equal opportunities</p>#}
+{#                        <button class="btn btn-lg btn-light text-success" type="button">VIEW MORE</button>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                </div>#}
+{#                <div class="col-md-6 mb-5">#}
+{#                  <div class="card text-white"><img class="card-img" src="{% static 'assets/img/illustrations/PMKVY-1.jpg' %}" alt="..." />#}
+{#                    <div class="card-img-overlay d-flex flex-column justify-content-center px-5 px-md-3 px-lg-5 bg-light-gradient">#}
+{#                      <h6 class="text-success pt-2">FULLY FUNDED</h6>#}
+{#                      <hr class="text-white" style="height:0.12rem;width:2.813rem" />#}
+{#                      <div class="pt-lg-3">#}
+{#                        <h6 class="fw-bold text-white fs-1 fs-md-2 fs-lg-3 w-xxl-50">Pradhan Mantri Kaushal Vikas Yojana</h6>#}
+{#                        <p class="w-xxl-75">Consider farms that have long term investment program.</p>#}
+{#                        <button class="btn btn-lg btn-light text-success" type="button">Learn More</button>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+        <!-- end of .container-->
+
+      </section>
+      <!-- <section> close ============================-->
+      <!-- ============================================-->
+
+
+      <section class="py-0">
+        <div class="bg-holder" style="background-image:url({% static 'symbiote/home_style/assets/img/illustrations/how-it-works.png' %});background-position:center bottom;background-size:cover;">
+        </div>
+        <!--/.bg-holder-->
+
+        <div class="container-lg">
+          <div class="row justify-content-center">
+            <div class="col-sm-8 col-md-9 col-xl-5 text-center pt-8" id="procedure">
+              <h5 class="fw-bold fs-3 fs-xxl-5 lh-sm mb-3 text-white" >How it works</h5>
+              <p class="mb-5 text-white">Take your pick from the supply chain and participate in agribusiness projects that are backed up not only by Zou, but also by the best land, family heritage, innovation and overall superior expertise.</p>
+            </div>
+            <div class="col-sm-9 col-md-12 col-xxl-9">
+              <div class="theme-tab">
+                <ul class="nav justify-content-between">
+                  <li class="nav-item" role="presentation"><a class="nav-link active fw-semi-bold" href="#bootstrap-tab1" data-bs-toggle="tab" data-bs-target="#tab1" id="tab-1"><span class="nav-item-circle-parent"><span class="nav-item-circle">01</span></span></a></li>
+                  <li class="nav-item" role="presentation"><a class="nav-link fw-semi-bold" href="#bootstrap-tab2" data-bs-toggle="tab" data-bs-target="#tab2" id="tab-2"><span class="nav-item-circle-parent"><span class="nav-item-circle">02</span></span></a></li>
+                  <li class="nav-item" role="presentation"><a class="nav-link fw-semi-bold" href="#bootstrap-tab3" data-bs-toggle="tab" data-bs-target="#tab3" id="tab-3"><span class="nav-item-circle-parent"><span class="nav-item-circle">03</span></span></a></li>
+                  <li class="nav-item" role="presentation"><a class="nav-link fw-semi-bold" href="#bootstrap-tab4" data-bs-toggle="tab" data-bs-target="#tab4" id="tab-4"><span class="nav-item-circle-parent"><span class="nav-item-circle">04</span></span></a></li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                  <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab-1">
+                    <div class="row align-items-center my-6 mx-auto">
+                      <div class="col-md-6 col-lg-5 offset-md-1">
+                        <h3 class="fw-bold lh-base text-white">Select your farmshare and complete reservation form here.</h3>
+                      </div>
+                      <div class="col-md-5 text-white offset-lg-1">
+                        <p class="mb-0">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab-2">
+                    <div class="row align-items-center my-6 mx-auto">
+                      <div class="col-md-6 col-lg-5 offset-md-1">
+                        <h3 class="fw-bold lh-base text-white">The Farm Share has been one of the best new additions to our life</h3>
+                      </div>
+                      <div class="col-md-5 text-white offset-lg-1">
+                        <p class="mb-0">We the farmers choose the vegetables in your share each week. A Farm Share is perfect for those who love the weekly surprise, and who look forward to cooking with inspiration from the seasons.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab-3">
+                    <div class="row align-items-center my-6 mx-auto">
+                      <div class="col-md-6 col-lg-5 offset-md-1">
+                        <h3 class="fw-bold lh-base text-white">There is so much love and thought put into this CSA. You can feel that.</h3>
+                      </div>
+                      <div class="col-md-5 text-white offset-lg-1">
+                        <p class="mb-0">We the farmers choose the vegetables in your share each week. A Farm Share is perfect for those who love the weekly surprise, and who look forward to cooking with inspiration from the seasons.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab-4">
+                    <div class="row align-items-center my-6 mx-auto">
+                      <div class="col-md-6 col-lg-5 offset-md-1">
+                        <h3 class="fw-bold lh-base text-white">The Farm Share has been one of the best new additions to our life</h3>
+                      </div>
+                      <div class="col-md-5 text-white offset-lg-1">
+                        <p class="mb-0">We the farmers choose the vegetables in your share each week. A Farm Share is perfect for those who love the weekly surprise, and who look forward to cooking with inspiration from the seasons.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="py-8" id="testimonial">
+        <div class="container-lg" id="live">
+          <div class="row flex-center">
+            <div class="col-12 col-lg-10 col-xl-12">
+                <h1 style="text-align: center;color: #66BB6A !important"> LIVE RECORDS </h1>
+{#              <div class="bg-holder" style="background-image:url({% static 'assets/img/illustrations/testimonial-bg.png' %});background-position:top left;background-size:120px 83px;">#}
+              </div>
+              <!--/.bg-holder-->
+
+{#              <h6 class="fs-3 fs-lg-4 fw-bold lh-sm">What investors like you <br />are saying about Zou</h6>#}
+            </div>
+            <div class="carousel slide pt-3" id="carouselExampleDark" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="10000">
+                  <div class="row h-100 mx-3 mx-sm-5 mx-md-4 my-md-7 m-lg-7 mt-7">
+                    <div class="col-md-4 mb-5 mb-md-0">
+                      <div class="card h-100 shadow">
+                        <div class="card-body my-3">
+                          <div class="align-items-xl-center d-block d-xl-flex px-3">
+{#                              <img class="img-fluid me-3 me-md-2 me-lg-3" src="{% static 'assets/img/gallery/user-1.png' %}" width="50" alt="" />#}
+                            <div class="flex-1 align-items-center pt-2">
+                                <br>
+                              <h5 class="mb-0 fw-bold text-success" style="text-align: center">TOTAL PROJECTS IN LIVE</h5>
+                                <br>
+                                <h1 style="text-align: center"  >1200+</h1>
+{#                              <p class="fw-normal text-black">Telecommunication Engineer</p>#}
+                            </div>
+                          </div>
+{#                          <p class="mb-0 px-3 px-md-2 px-xxl-3">&quot;Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae</p>#}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-5 mb-md-0">
+                      <div class="card h-100 shadow">
+                        <div class="card-body my-3">
+                          <div class="align-items-xl-center d-block d-xl-flex px-3">
+{#                              <img class="img-fluid me-3 me-md-2 me-lg-3" src="{% static 'assets/img/gallery/user-2.png' %}" width="50" alt="" />#}
+                            <div class="flex-1 align-items-center pt-2">
+                                <br>
+                              <h5 class="mb-0 fw-bold text-success" style="text-align: center">TOTAL EMPLOYEES WORKING</h5>
+                                <br>
+                                <h1 style="text-align: center">900+</h1>
+{#                              <p class="fw-normal text-black">Head of Agrogofund </p>#}
+                            </div>
+                          </div>
+{#                          <p class="mb-0 px-3 px-md-2 px-xxl-3">&quot;At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium </p>#}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-5 mb-md-0">
+                      <div class="card h-100 shadow">
+                        <div class="card-body my-3">
+                          <div class="align-items-xl-center d-block d-xl-flex px-3">
+{#                              <img class="img-fluid me-3 me-md-2 me-lg-3" src="{% static 'assets/img/gallery/user-3.png' %}" width="50" alt="" />#}
+                            <div class="flex-1 align-items-center pt-2">
+                                <br>
+                              <h5 class="mb-0 fw-bold text-success" style="text-align: center">REQUIRED NUMBER OF EMPLOYEES</h5>
+{#                              <p class="fw-normal text-black">Herbalist</p>#}
+                                <br>
+                                <h1 style="text-align: center">500+</h1>
+
+                            </div>
+                          </div>
+{#                          <p class="mb-0 px-3 px-md-2 px-xxl-3">&quot;At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium </p>#}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+{#                <div class="carousel-item" data-bs-interval="2000">#}
+{#                  <div class="row h-100 mx-3 mx-sm-5 mx-md-4 my-md-7 m-lg-7 mt-7">#}
+{#                    <div class="col-md-4 mb-5 mb-md-0">#}
+{#                      <div class="card h-100 shadow">#}
+{#                        <div class="card-body my-3">#}
+{#                          <div class="align-items-xl-center d-block d-xl-flex px-3"><img class="img-fluid me-3 me-md-2 me-lg-3" src="{% static 'assets/img/gallery/user-1.png' %}" width="50" alt="" />#}
+{#                            <div class="flex-1 align-items-center pt-2">#}
+{#                              <h5 class="mb-0 fw-bold text-success">Fernando Soler</h5>#}
+{#                              <p class="fw-normal text-black">Telecommunication Engineer</p>#}
+{#                            </div>#}
+{#                          </div>#}
+{#                          <p class="mb-0 px-3 px-md-2 px-xxl-3">&quot;Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae</p>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                    <div class="col-md-4 mb-5 mb-md-0">#}
+{#                      <div class="card h-100 shadow">#}
+{#                        <div class="card-body my-3">#}
+{#                          <div class="align-items-xl-center d-block d-xl-flex px-3"><img class="img-fluid me-3 me-md-2 me-lg-3" src="{% static 'assets/img/gallery/user-2.png' %}" width="50" alt="" />#}
+{#                            <div class="flex-1 align-items-center pt-2">#}
+{#                              <h5 class="mb-0 fw-bold text-success">Ilone Pickford</h5>#}
+{#                              <p class="fw-normal text-black">Head of Agrogofund Groups </p>#}
+{#                            </div>#}
+{#                          </div>#}
+{#                          <p class="mb-0 px-3 px-md-2 px-xxl-3">&quot;At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium </p>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                    <div class="col-md-4 mb-5 mb-md-0">#}
+{#                      <div class="card h-100 shadow">#}
+{#                        <div class="card-body my-3">#}
+{#                          <div class="align-items-xl-center d-block d-xl-flex px-3"><img class="img-fluid me-3 me-md-2 me-lg-3" src="{% static 'assets/img/gallery/user-3.png' %}" width="50" alt="" />#}
+{#                            <div class="flex-1 align-items-center pt-2">#}
+{#                              <h5 class="mb-0 fw-bold text-success">Ed O’Brien</h5>#}
+{#                              <p class="fw-normal text-black">Herbalist</p>#}
+{#                            </div>#}
+{#                          </div>#}
+{#                          <p class="mb-0 px-3 px-md-2 px-xxl-3">&quot;Ui dolorem eum fugiat quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio</p>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                </div>#}
+{#                <div class="carousel-item">#}
+{#                  <div class="row h-100 mx-3 mx-sm-5 mx-md-4 my-md-7 m-lg-7 mt-7">#}
+{#                    <div class="col-md-4 mb-5 mb-md-0">#}
+{#                      <div class="card h-100 shadow">#}
+{#                        <div class="card-body my-3">#}
+{#                          <div class="align-items-xl-center d-block d-xl-flex px-3"><img class="img-fluid me-3 me-md-2 me-lg-3" src="{% static 'assets/img/gallery/user-1.png' %}" width="50" alt="" />#}
+{#                            <div class="flex-1 align-items-center pt-2">#}
+{#                              <h5 class="mb-0 fw-bold text-success">Fernando Soler</h5>#}
+{#                              <p class="fw-normal text-black">Telecommunication Engineer</p>#}
+{#                            </div>#}
+{#                          </div>#}
+{#                          <p class="mb-0 px-3 px-md-2 px-xxl-3">&quot;Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae</p>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                    <div class="col-md-4 mb-5 mb-md-0">#}
+{#                      <div class="card h-100 shadow">#}
+{#                        <div class="card-body my-3">#}
+{#                          <div class="align-items-xl-center d-block d-xl-flex px-3"><img class="img-fluid me-3 me-md-2 me-lg-3" src="{% static 'assets/img/gallery/user-2.png' %}" width="50" alt="" />#}
+{#                            <div class="flex-1 align-items-center pt-2">#}
+{#                              <h5 class="mb-0 fw-bold text-success">Ilone Pickford</h5>#}
+{#                              <p class="fw-normal text-black">Head of Agrogofund Groups </p>#}
+{#                            </div>#}
+{#                          </div>#}
+{#                          <p class="mb-0 px-3 px-md-2 px-xxl-3">&quot;At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium </p>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                    <div class="col-md-4 mb-5 mb-md-0">#}
+{#                      <div class="card h-100 shadow">#}
+{#                        <div class="card-body my-3">#}
+{#                          <div class="align-items-xl-center d-block d-xl-flex px-3"><img class="img-fluid me-3 me-md-2 me-lg-3" src="{% static 'assets/img/gallery/user-3.png' %}" width="50" alt="" />#}
+{#                            <div class="flex-1 align-items-center pt-2">#}
+{#                              <h5 class="mb-0 fw-bold text-success">Ed O’Brien</h5>#}
+{#                              <p class="fw-normal text-black">Herbalist</p>#}
+{#                            </div>#}
+{#                          </div>#}
+{#                          <p class="mb-0 px-3 px-md-2 px-xxl-3">&quot;Ui dolorem eum fugiat quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio</p>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                </div>#}
+              </div>
+{#              <div class="row px-3 px-sm-6 px-md-0 px-lg-5 px-xl-4">#}
+{#                <div class="col-12 position-relative"><a class="carousel-control-prev carousel-icon z-index-2" href="#carouselExampleDark" role="button" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></a><a class="carousel-control-next carousel-icon z-index-2" href="#carouselExampleDark" role="button" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></a></div>#}
+{#              </div>#}
+            </div>
+          </div>
+{#        </div>#}
+      </section>
+
+
+      <!-- ============================================-->
+      <!-- <section> begin ============================-->
+{#      <section class="z-index-1 cta">#}
+
+{#        <div class="container">#}
+{#          <div class="row flex-center">#}
+{#            <div class="col-12">#}
+{#              <div class="card shadow h-100 py-5">#}
+{#                <div class="card-body text-center">#}
+{#                  <h1 class="fw-semi-bold mb-4">The future of &nbsp;<span class="text-success">Farm Investing</span> &nbsp; is Zou</h1><a class="btn btn-lg btn-success px-6" href="#" role="button">Invest Now</a>#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+        <!-- end of .container-->
+
+{#      </section>#}
+      <!-- <section> close ============================-->
+      <!-- ============================================-->
+
+{#<div style="border: 3px solid red" >#}
+        <div class="col-lg-8" style="margin-left: 16%;margin-bottom: 13%" id="contact">
+
+					<!-- Contact Form -->
+					<div class="contact_form" style="justify-content: center">
+						<div class="contact_title" style="text-align: center">CONTACT</div>
+
+						<div class="contact_form_container">
+							<form id="contact-form" method="POST" action="https://formspree.io/f/xyx@gmail.com">
+								<input id="name" class="input_field contact_form_name" type="text" placeholder="Name" required="required" data-error="Name is required." style="background: lightcyan;color: black" >
+								<input id="email" class="input_field contact_form_email" type="email" placeholder="E-mail" required="required" data-error="Valid email is required." style="background: lightcyan;color: black">
+								<textarea id="message" class="text_field contact_form_message" name="message" placeholder="Message" required="required" data-error="Please, write us a message." style="background: lightcyan;color: black"></textarea>
+								<button type="submit" class="contact_send_btn trans_200">send message</button>
+							</form>
+						</div>
+					</div>
+
+				</div>
+{#    </div>#}
+      <section class="py-0" >
+{#        <div class="bg-holder" style="background-image:url({% static 'assets/img/illustrations/footer-bg.png' %});background-position:center;background-size:cover;">#}
+{#        </div>#}
+        <!--/.bg-holder-->
+
+        <div class="container">
+          <div class="row justify-content-lg-between min-vh-auto" >
+            <div class="col-6 col-sm-4 col-lg-auto mb-3">
+              <h6 class="mb-3 text-1000 fw-semi-bold">MENU </h6>
+              <ul class="list-unstyled mb-md-4 mb-lg-0">
+                <li class="mb-3"><a class="text-700 text-decoration-none" href="#top">ABOUT US</a></li>
+{#                <li class="mb-3"><a class="text-700 text-decoration-none" href="#!">Team</a></li>#}
+                <li class="mb-3"><a class="text-700 text-decoration-none" href="#Opportuanities">OPPORTUNITIES</a></li>
+                <li class="mb-3"><a class="text-700 text-decoration-none" href="#procedure">PROCEDURE</a></li>
+                <li class="mb-3"><a class="text-700 text-decoration-none" href="#information">INFORMATION</a></li>
+                  <li class="mb-3"><a class="text-700 text-decoration-none" href="#contact">CONTACT</a></li>
+              </ul>
+            </div>
+{#            <div class="col-6 col-sm-4 col-lg-auto mb-3">#}
+{#              <h6 class="mb-3 text-1000 fw-semi-bold">INVEST </h6>#}
+{#              <ul class="list-unstyled mb-md-4 mb-lg-0">#}
+{#                <li class="mb-3"><a class="text-700 text-decoration-none" href="#!">Features</a></li>#}
+{#                <li class="mb-3"><a class="text-700 text-decoration-none" href="#!">How it works</a></li>#}
+{#                <li class="mb-3"><a class="text-700 text-decoration-none" href="#!">Pricing</a></li>#}
+{#                <li class="mb-3"><a class="text-700 text-decoration-none" href="#!">Login</a></li>#}
+{#              </ul>#}
+{#            </div>#}
+            <div class="col-6 col-sm-4 col-lg-auto mb-3">
+              <h6 class="mb-3 text-1000 fw-semi-bold">LEGAL </h6>
+              <ul class="list-unstyled mb-md-4 mb-lg-0">
+                <li class="mb-3"><a class="text-700 text-decoration-none" href="#!">PRIVACY</a></li>
+                <li class="mb-3"><a class="text-700 text-decoration-none" href="#!">TERMS</a></li>
+                <li class="mb-3"><a class="text-700 text-decoration-none" href="#!">SECURITY</a></li>
+              </ul>
+            </div>
+{#            <div class="col-12 col-lg-auto mb-3">#}
+{#              <div class="card bg-success">#}
+{#                <div class="card-body p-sm-4">#}
+{#                  <h5 class="text-white">Blog Zou</h5>#}
+{#                  <p class="mb-0 text-white">write email to us<span class="text-white fs--1 fs-sm-1">info@zoufarm.com</span></p>#}
+{#                  <button class="btn btn-light text-success" type="button">#}
+{#                    <svg class="bi bi-person me-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#76C279" viewBox="0 0 16 16">#}
+{#                      <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"></path>#}
+{#                    </svg>Sing In#}
+{#                  </button>#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+          </div>
+          <hr class="text-300 mb-0" />
+          <div class="row flex-center py-5" style="padding-bottom: 40px">
+            <div class="col-12 col-sm-8 col-md-6 text-center text-md-start"> <a class="text-decoration-none" href="#">
+{#                <img class="d-inline-block align-top img-fluid" src="{%  static 'assets/img/gallery/logo-icon.png' %}" alt="" width="40" />#}
+                <span class="text-theme font-monospace fs-3 ps-2">MGNREA</span></a></div>
+            <div class="col-12 col-sm-8 col-md-6">
+              <p class="fs--1 text-dark my-2 text-center text-md-end">Copyright © 2023 MGNREA. All rights reserved.
+                <svg class="bi bi-suit-heart-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#76C279" viewBox="0 0 16 16">
+                  <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"></path>
+                </svg>&nbsp;by&nbsp;<a class="text-dark" href="#" target="_blank">TEAM SYMBIOTE</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- ===============================================-->
+    <!--    End of Main Content-->
+    <!-- ===============================================-->
+
+<script>
+	const form = document.getElementById('contact-form');
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const formData = new FormData(form);
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', form.action);
+  xhr.setRequestHeader('Accept', 'application/json');
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState !== XMLHttpRequest.DONE) return;
+    if (xhr.status === 200) {
+      form.reset();
+      alert('Thank you for your message!');
+    } else {
+      alert('Oops! Something went wrong.');
+    }
+  };
+  xhr.send(formData);
+});
+
+
+</script>
+
+
+    <!-- ===============================================-->
+    <!--    JavaScripts-->
+    <!-- ===============================================-->
+    <script src="{% static 'symbiote/home_style/vendors/@popperjs/popper.min.js' %}"></script>
+    <script src="{% static 'symbiote/home_style/vendors/bootstrap/bootstrap.min.js' %}"></script>
+    <script src="{% static 'symbiote/home_style/vendors/is/is.min.js' %}"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+    <script src="{% static 'symbiote/home_style/assets/js/theme.js' %}"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;700;900&amp;display=swap" rel="stylesheet">
+  </body>
+
+</html>

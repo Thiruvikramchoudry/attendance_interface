@@ -295,3 +295,37 @@
     background: var(--dark);
     border-color: var(--primary);
 }
+
+.project_def{
+    background-color: #85CDFD;
+    border: none;
+    color: #1b2430;
+    text-align: left;
+    transition: 0.2s;
+}
+.project_def:hover{
+    background-color: #222f41;
+    color:whitesmoke;
+}
+
+#video_result{
+    width: 100%;
+}
+#result_dis{
+    display: flex;
+}
+
+#video_div{
+    width: 50%;
+}
+@media only screen and (max-width: 1000px) {
+    #video_result {
+        width: 100%;
+    }
+    #result_dis{
+        display: block;
+    }
+    #video_div{
+        width: 100%;
+    }
+}

@@ -56,24 +56,14 @@
                     </div>
                     <div class="ms-3">
                         <h6 class="mb-0" style="color: #F2F2F0" onclick="get_data()">{{ username }}</h6>
-                        <span>Admin</span>
+                        <span>Supervisor</span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="{% url 'home' %}" class="nav-item nav-link " ><i class="fa fa-tachometer-alt me-2"></i><span style="color: #F2F2F0">Dashboard</span></a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i><span style="color: #F2F2F0">Clear Data</span></a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a href="{% url 'clear_data' %}" class="dropdown-item" style="color: whitesmoke">Clear Updates</a>
-                            <a href="" class="dropdown-item" style="color: whitesmoke">Save & Clear</a>
-                            <a href="{% url 'save_data' %}" class="dropdown-item" style="color: whitesmoke">Just Save</a>
-                        </div>
-                    </div>
+                    <a href="{% url 'supervisor_page'  %}" class="nav-item nav-link" ><i class="fa fa-tachometer-alt me-2"></i><span style="color: #F2F2F0">Dashboard</span></a>
                     <a href="{% url 'employee_details' %}" class="nav-item nav-link"><i class="fa fa-th me-2"></i><span style="color: #F2F2F0">Empoloyee Details</span></a>
                     <a href="{% url 'attendance_status' %}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i><span style="color: #F2F2F0">Attendance Status</span></a>
-                    <a href="{% url 'add_employee' %}" class="nav-item nav-link"><i class="fa fa-table me-2"></i><span style="color: #F2F2F0">Add Employee</span></a>
                     <a href="{% url 'download_stats' %}" class="nav-item nav-link active"><i class="fa fa-chart-bar me-2"></i><span style="color: #F2F2F0">Manual Entry</span></a>
-
                 </div>
             </nav>
         </div>
@@ -99,7 +89,7 @@
                     <i class="fa fa-bars"></i>
                 </a>
                 <form class="d-none d-md-flex ms-4" style="width: 100%;">
-                    <input class="form-control border-0" type="search" placeholder="Search" style="width: 50%;background: aliceblue;background-color: #222f41;color: snow">
+                    <input class="form-control border-0" type="search" placeholder="Search" style="width: 50%;background: aliceblue;background-color: #222f41;color: snow"">
                 </form>
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
@@ -182,22 +172,28 @@
                                 <br>
                                 <h3 class="card-title" style="text-align: center;color: cyan">MANUAL ATTENDANCE</h3>
                                 <br>
-                                <form method="post">
-                                    {% csrf_token %}
-                                    <div class="row mb-3">
-                                        <label for="inputEmail3" class="col-sm-2 col-form-label" style="color: whitesmoke">EMPLOYEE ID</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="name" style="background: #222f41;border: none" name="emp_ID">
-                                        </div>
-                                    </div>
+                            <div  id="result_dis">
 
-                                    <br>
-                                    <div style="position: relative;height: 70px;width: 100%;">
-                            <div style="position:absolute;bottom:25%;right: 47%;">
-                                <button class="btn  btn-rounded btn-fw" type="submit" style="background-color: #85CDFD ; color:black">SUBMIT</button>
-                            </div>
-                        </div>
+                                    {% if status == True %}
+                                        <div  id="video_div">
+                                     <img src="{% url 'video_feed' %}" id = "video_result" >
+                                        </div>
+                                    {% endif %}
+
+                            <div style="margin: auto;">
+                                {% if status != True %}
+                                <form method="POST" action="{% url 'stop_streaming' %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-primary" >Start Recognition</button>
                                 </form>
+                                {% endif %}
+                                {% if status == True %}
+                                <form method="POST" action="{% url 'uncapture' %}">
+                                    {% csrf_token %}
+                                    <button class="btn  btn-rounded btn-fw" type="submit" style="background-color: #85CDFD ; color:black">Stop Recognition</button>
+                                </form>
+                                {% endif %}
+                            </div>
                             </div>
                         </div>
                 </div>
@@ -226,6 +222,17 @@
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
+    <script>
+         function videoClose() {
+            var x = document.getElementById("video");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
+
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
