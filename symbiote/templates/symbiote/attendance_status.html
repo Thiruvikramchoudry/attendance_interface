@@ -53,17 +53,9 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="{% url 'home' %}" class="nav-item nav-link" ><i class="fa fa-tachometer-alt me-2"></i><span style="color: #F2F2F0">Dashboard</span></a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i><span style="color: #F2F2F0">Clear Data</span></a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a href="{% url 'clear_data' %}" class="dropdown-item" style="color: whitesmoke">Clear Updates</a>
-                            <a href="{% url 'save_clean' %}" class="dropdown-item" style="color: whitesmoke">Save & Clear</a>
-                            <a href="{% url 'save_data' %}" class="dropdown-item" style="color: whitesmoke">Just Save</a>
-                        </div>
-                    </div>
-                    <a href="{% url 'employee_details' %}" class="nav-item nav-link"><i class="fa fa-th me-2"></i><span style="color: #F2F2F0">Empoloyee Details</span></a>
-                    <a href="{% url 'attendance_status' %}" class="nav-item nav-link active"><i class="fa fa-keyboard me-2"></i><span style="color: #F2F2F0">Attendence Status</span></a>
+                    <a href="{% url 'supervisor_page' username%}" class="nav-item nav-link" ><i class="fa fa-tachometer-alt me-2"></i><span style="color: #F2F2F0">Dashboard</span></a>
+                    <a href="{% url 'employee_details' username %}" class="nav-item nav-link"><i class="fa fa-th me-2"></i><span style="color: #F2F2F0">Empoloyee Details</span></a>
+                    <a href="{% url 'attendance_status' username %}" class="nav-item nav-link active"><i class="fa fa-keyboard me-2"></i><span style="color: #F2F2F0">Attendence Status</span></a>
                     <a href="{% url 'add_employee' %}" class="nav-item nav-link"><i class="fa fa-table me-2"></i><span style="color: #F2F2F0">Add Employee</span></a>
                     <a href="{% url 'download_stats' %}" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i><span style="color: #F2F2F0">Manual Entry</span></a>
 
@@ -92,7 +84,7 @@
                     <i class="fa fa-bars"></i>
                 </a>
                 <form class="d-none d-md-flex ms-4" style="width: 100%;">
-                    <input class="form-control border-0" type="search" placeholder="Search" style="width: 50%;background: aliceblue;background-color: #222f41;color: snow"">
+                    <input class="form-control border-0" type="search" placeholder="Search" style="width: 50%;background: aliceblue;background-color: #222f41;color: snow">
                 </form>
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
@@ -197,24 +189,31 @@
                         <table class="table text-start align-middle table-bordered table-hover mb-0">
                             <thead>
                                 <tr class="text-dark">
-                                    <th scope="col" style="text-align: center">Employee_id</th>
-                                    <th scope="col" style="text-align: center">Date</th>
-                                    <th scope="col" style="text-align: center">Time</th>
+                                    <th scope="col" style="text-align: center">Employee ID</th>
+                                    <th scope="col" style="text-align: center">Employee Name</th>
                                     <th scope="col" style="text-align: center">Status</th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for i in details %}
+                                {% for i,j,k in details %}
                                 <tr>
-                                    <td style="text-align: center">{{ i.Employee_id }}</td>
-                                    <td style="text-align: center">{{ i.Date }}</td>
-                                    <td style="text-align: center">{{ i.Time }}</td>
+                                    <td style="text-align: center">{{ i}}</td>
+                                    <td style="text-align: center">{{ j }}</td>
+
+                                    {% if k == True %}
                                     <td style="text-align: center">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bookmark-check-fill" viewBox="0 0 16 16" style="color: #0ce80c">
   <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm8.854-9.646a.5.5 0 0 0-.708-.708L7.5 7.793 6.354 6.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
 </svg>
                                     </td>
+                                    {% else %}
+                                        <td style="text-align: center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bookmark-check-fill" viewBox="0 0 16 16" style="color: #e80c26">
+  <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm8.854-9.646a.5.5 0 0 0-.708-.708L7.5 7.793 6.354 6.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+</svg>
+                                    </td>
+                                {% endif %}
 
                                 </tr>
                                 {% endfor %}

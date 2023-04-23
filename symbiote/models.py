@@ -15,13 +15,19 @@ class employee_details(models.Model):
     def __str__(self):
         return self.employee_name
 
+class employee_assign(models.Model):
+    employee_id=models.IntegerField()
+    project_id=models.IntegerField()
 
+    def __str__(self):
+        return str(self.employee_id)
 
 
 
 class supervisor_assign(models.Model):
     supervisor_username=models.CharField(max_length=100)
-    assign_work_at=models.IntegerField()
+    project_id=models.IntegerField()
+
     employee_list=models.FileField(upload_to='employee_assign')
 
     def __str__(self):

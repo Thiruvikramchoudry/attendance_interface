@@ -2,9 +2,9 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User, auth
 from django.contrib.auth import authenticate
 #from .models import details,attendence_area,absenteism_count
-from .models import supervisor_detail,supervisor_assign
+from .models import supervisor_detail,supervisor_assign,project,employee_details,employee_assign
 import datetime,json
-#import pandas as pd
+import pandas as pd
 import symbiote.main_db_connection as mdb
 import os
 import cv2
@@ -14,41 +14,25 @@ import cv2
 
 # Create your views here.
 
-def main(request):
+def main(request,username):
+    project_id = supervisor_assign.objects.get(supervisor_username=username).project_id
+    employee_count = project.objects.get(project_id=project_id).employee_required
+    today = datetime.date.today()
 
-    username=request.user
-    data = attendence_area.objects.all()[:5]
-    total_count = len(details.objects.all())
-    date = datetime.date.today()
-    today_count = len(attendence_area.objects.filter(date=date))
-    today_emp = attendence_area.objects.filter(date=date)
-    late_entry = 0
-    for i in today_emp:
-        time = str((i.time)).split(":")
-        print(time)
-        hh = int(time[0])
-        mm = int(time[1])
+    file_name = (str(today.day) + '-' + str(today.month if len(str(today.month)) == 2 else '0' + str(today.month)) + '-' + str(today.year)) + ".xlsx"
+    df = pd.read_excel(r'symbiote/employee_assign/' + str(project_id) + '/' + file_name)
+    emp_id = df['Employee_id']
+    try:
+        status = df['Status'].value_counts()[True]
+    except:
+        status = 0
+    detail_name = df['Employee_name']
+    detail_status = df['Status']
+    details = []
+    for i in range(min(5, len(detail_name))):
+        details.append([emp_id[i], detail_name[i], detail_status[i]])
 
-
-        if hh > 10 or (hh == 10 and mm != 00):
-            late_entry += 1
-    record = absenteism_count.objects.all()
-    present_count = [];
-    total_person = [];
-    late_person = [];
-    preleave_person = [];
-    dates = []
-    for i in record[::-1][:6][::-1]:
-        present_count.append(i.Total_person - i.preleave_count - i.absent_count)
-        total_person.append(i.Total_person)
-        late_person.append(i.late_count)
-        preleave_person.append(i.preleave_count)
-        dates.append(i.date)
-
-    return render(request, 'symbiote/index.html',
-                  {'username': username, 'details': data, 'total_count': total_count, 'today_count': today_count,
-                   'late_entry': late_entry, 'present_count': present_count, 'total_person': total_person,
-                   'late_person': late_person, 'preleave_person': preleave_person, 'dates': dates})
+    return render(request, 'symbiote/index.html',{'username': username, 'employee_count': employee_count, 'present_count': status, 'details': details})
 
 
 
@@ -103,17 +87,28 @@ def clear(request):
     mdb.delete_attendence()
     return redirect('/')
 
-def employee_detail(request):
-    Employee_data=details.objects.all()
-    return render(request,'symbiote/employee_details.html',{'username':request.user,'details':Employee_data})
+def employee_detail(request,username):
+    project_id=supervisor_assign.objects.get(supervisor_username=username).project_id
+    Employee_id=employee_assign.objects.filter(project_id=project_id)
+    employee_detail=[]
+    for i in Employee_id:
+        employee_detail.append(employee_details.objects.get(employee_id=i.employee_id))
+
+    return render(request,'symbiote/employee_details.html',{'username':username,'details':employee_detail})
 
 
-def attendance_status(request):
-    dir_list = os.listdir('symbiote/static/symbiote/index_styles/attendance_status_files')
-    for i in range(len(dir_list)):
-        dir_list[i] = dir_list[i].split(".")[0]
-    data = attendence_area.objects.all()[:5]
-    return render(request,'symbiote/attendance_status.html',{'username': request.user,"files_dir":dir_list,'details':data})
+def attendance_status(request,username):
+    project_id = supervisor_assign.objects.get(supervisor_username=username).project_id
+    today=datetime.date.today()
+    file_name = (str(today.day) + '-' + str(today.month if len(str(today.month)) == 2 else '0' + str(today.month)) + '-' + str(today.year)) + ".xlsx"
+    df = pd.read_excel(r'symbiote/employee_assign/' + str(project_id) + '/' + file_name)
+    emp_id = df['Employee_id']
+    detail_name = df['Employee_name']
+    detail_status = df['Status']
+    details = []
+    for i in range( len(detail_name)):
+        details.append([emp_id[i], detail_name[i], detail_status[i]])
+    return render(request,'symbiote/attendance_status.html',{'username': username,'details':details})
 
 
 def add_employee(request):
@@ -197,8 +192,8 @@ def save_clear(request):
             status.append([i, "present"])
         elif i in absent_entry:
             status.append([i, "absent"])
-
     print(status)
+
 
     #df = pd.DataFrame(status, columns=['Employee_Id', 'Status'])
     date=datetime.datetime.today().date()
@@ -240,7 +235,7 @@ def login_supervisor(request):
         password=request.POST["password"]
         if len(supervisor_detail.objects.filter(username=username,password=password))!=0:
             if len(supervisor_assign.objects.filter(supervisor_username=username)) != 0:
-                return redirect('home')
+                return redirect('supervisor_page/'+username)
             else:
                 return render(request, 'symbiote/no_assign.html',{'username':username})
 
@@ -259,12 +254,6 @@ def login_supervisor(request):
 
 
 
-
-
-
-
-
-    
 
 
 
