@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate
 from .models import supervisor_detail,supervisor_assign,project,employee_details,employee_assign
 import datetime,json
 import pandas as pd
-import symbiote.main_db_connection as mdb
+#import symbiote.main_db_connection as mdb
 import os
 import cv2
 from symbiote.videocapture import VideoCamera,gen

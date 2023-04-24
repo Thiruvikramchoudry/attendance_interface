@@ -2,5 +2,6 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/symbiote/face_recognation/Face_Recognition_SVM" vcs="Git" />
   </component>
 </project>
