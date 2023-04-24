@@ -60,10 +60,10 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="{% url 'admin_page' %}" class="nav-item nav-link " ><i class="fa fa-tachometer-alt me-2"></i><span style="color: #F2F2F0">Dashboard</span></a>
+                    <a href="{% url 'admin_page' %}" class="nav-item nav-link active" ><i class="fa fa-tachometer-alt me-2"></i><span style="color: #F2F2F0">Dashboard</span></a>
                     <a href="{% url 'project_details' %}" class="nav-item nav-link"><i class="fa fa-th me-2"></i><span style="color: #F2F2F0">Project Details</span></a>
                     <a href="{% url 'employee_detail_all'  %}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i><span style="color: #F2F2F0">Employee Details</span></a>
-                    <a href="{% url 'new_project' %}" class="nav-item nav-link active"><i class="fa fa-table me-2"></i><span style="color: #F2F2F0">New Project</span></a>
+                    <a href="{% url 'new_project' %}" class="nav-item nav-link"><i class="fa fa-table me-2"></i><span style="color: #F2F2F0">New Project</span></a>
                     <a href="{% url 'add_supervisor' %}" class="nav-item nav-link"><i class="fa fa-table me-2"></i><span style="color: #F2F2F0">New Supervisor</span></a>
 
                     <a href="{% url 'morning_update' %}" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i><span style="color: #F2F2F0">Morning Update's</span></a>
@@ -79,6 +79,7 @@
 
         </div>
         <!-- Sidebar End -->
+
 
         <!-- Content Start -->
         <div class="content">
@@ -164,64 +165,50 @@
                 </div>
             </nav>
             <!-- Navbar End -->
+
+
+            <!-- Sale & Revenue Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
-                <div class="col-sm-12 ">
-                            <div class="bg-light rounded h-100 p-4">
-                                <br>
-                                <h3 class="card-title" style="text-align: center;color: cyan">NEW PROJECT</h3>
-                                <br>
-                                <form method="post" action="{% url 'new_project' %}">
-                                    {% csrf_token %}
-                                    <div class="row mb-3">
-                                        <label for="inputEmail3" class="col-sm-2 col-form-label" style="color: whitesmoke">Project Area</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="name" style="background: #222f41;border: none" name="project_area">
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label for="inputPassword3" class="col-sm-2 col-form-label" style="color: whitesmoke">Employee Required</label>
-                                        <div class="col-sm-10">
-                                            <input type="number" class="form-control" id="designation" style="background: #222f41;border: none" name="employee_required">
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <label class="col-sm-2 col-form-label" style="color: whitesmoke">Supervisor</label>
-                                        <div class="col-sm-10">
-                                          <select class="form-control" style="background: #222f41;border: none" name="supervisor" >
-                                              <option selected>SELECT...</option>
-                                              {%  for i in supervisor_available %}
-                                              <option value="{{ i.username }}">{{  i.username}}</option>
-                                              {% endfor %}
-                                          </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <label for="inputPassword3" class="col-sm-2 col-form-label" style="color: whitesmoke">Phone Number</label>
-                                        <div class="col-sm-10">
-                                            <input type="tel" class="form-control" id="phone" style="background: #222f41;border: none"  name="phone_number">
-                                        </div>
-                                    </div>
-
-                                    <br>
-                                    <div style="position: relative;height: 70px;width: 100%;">
-                            <div style="position:absolute;bottom:25%;right: 47%;">
-                                <button class="btn  btn-rounded btn-fw" type="submit" style="background-color: #85CDFD ; color:black">SUBMIT</button>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-line fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Total Employee</p>
+                                <h6 class="mb-0">{{ total_employee }}</h6>
                             </div>
                         </div>
-{#                                    <div style="">#}
-{#                                        <button type="submit" class="btn btn-primary" >Sign in</button>#}
-{#                                    </div>#}
-                                </form>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-bar fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Projects</p>
+                                <h6 class="mb-0">{{ project_count }}</h6>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-area fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Employee_required</p>
+                                <h6 class="mb-0">{{ employee_required }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-pie fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Supervisor Count</p>
+                                <h6 class="mb-0">{{ supervisor_count }}</h6>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-
-
+            <!-- Sale & Revenue End -->
 
 
 

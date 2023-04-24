@@ -92,7 +92,7 @@ def new_project(request):
     if request.method == "POST":
         pass
     else:
-        return render(request, 'symbiote/new_project.html', {''})
+        return render(request, 'symbiote/new_project.html', {'username':request.user,'supervisor_available':supervisor_available})
 
 
 # def sample(request):
@@ -297,3 +297,23 @@ def login_supervisor(request):
         return render(request, 'symbiote/login2.html', {'message': 'Incorrect Credientials'})
     else:
         return render(request, 'symbiote/login2.html', {'message': ''})
+
+
+def add_supervisor(request):
+    if request.method=='POST':
+        username=request.POST['username']
+        password=request.POST['password']
+        name=request.POST['name']
+        supervisor_details=supervisor_detail(username=username,password=password,supervisor_name=name,status=False)
+        supervisor_details.save()
+        return redirect('admin_page')
+
+    return render(request,'symbiote/add_supervisor.html')
+
+
+def morning_update(request):
+    if request.method=='POST':
+        pass
+    else:
+        return render(request,'symbiote/morning_update.html')
+
