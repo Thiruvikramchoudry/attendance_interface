@@ -90,7 +90,20 @@ def new_project(request):
             supervisor_available.append(i)
 
     if request.method == "POST":
-        pass
+        l=[]
+        project_area = request.POST['project_area']
+        employee_required = request.POST['employee_required']
+        supervisor = request.POST['supervisor']
+        phone_number = request.POST['phone_number']
+        from_date = request.POST['from_date']
+        to_date = request.POST['to_date']
+        for i in project.objects.all():
+            l.append(i.project_id)
+        project_id = max(l) + 1
+        project1 = project.objects.create(project_id=project_id, project_area=project_area, employee_required=employee_required,supervisor=supervisor,phone_number=phone_number,from_date=from_date,to_date=to_date)
+        project1.save()
+        print(project_id, project_area, employee_required, supervisor, phone_number, from_date, to_date)
+        return render(request, 'symbiote/new_project.html', {'username': request.user,'supervisor_available':supervisor_available})
     else:
         return render(request, 'symbiote/new_project.html', {'username':request.user,'supervisor_available':supervisor_available})
 
@@ -315,5 +328,6 @@ def morning_update(request):
     if request.method=='POST':
         pass
     else:
-        return render(request,'symbiote/morning_update.html')
+        projects=project.objects.all()
+        return render(request,'symbiote/morning_update.html',{'username':request.user,'projects':projects})
 
