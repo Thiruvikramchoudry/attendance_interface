@@ -90,9 +90,15 @@ def new_project(request):
             supervisor_available.append(i)
 
     if request.method == "POST":
-        pass
+        project_area = request.POST['project_area']
+        employee_required = request.POST['employee_required']
+        supervisor= request.POST['supervisor']
+        phone_number = request.POST['phone_number']
+        from_date = request.POST['from_date']
+        to_date = request.POST['to_date']
+
     else:
-        return render(request, 'symbiote/new_project.html', {''})
+        return render(request, 'symbiote/new_project.html')
 
 
 # def sample(request):
