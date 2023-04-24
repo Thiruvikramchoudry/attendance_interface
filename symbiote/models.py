@@ -46,7 +46,11 @@ class project(models.Model):
     project_id=models.IntegerField()
     project_area=models.CharField(max_length=100)
     employee_required=models.IntegerField()
-    status=models.CharField(max_length=100)
+    status=models.CharField(max_length=100,default="Not Started")
+    supervisor=models.CharField(max_length=100)
+    phone_number=models.IntegerField()
+    from_date=models.DateField()
+    to_date=models.DateField()
 
     def __str__(self):
         return str(self.project_id)
