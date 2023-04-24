@@ -176,13 +176,13 @@
 
                                     {% if status == True %}
                                         <div  id="video_div">
-                                     <img src="{% url 'video_feed' %}" id = "video_result" >
+                                     <img src="{% url 'video_feed1' %}" id = "video_result" >
                                         </div>
                                     {% endif %}
 
                             <div style="margin: auto;">
                                 {% if status != True %}
-                                <form method="POST" action="{% url 'stop_streaming' %}">
+                                <form method="POST" action="{% url 'stop_streaming1' %}">
                                     {% csrf_token %}
                                     <button type="submit" class="btn btn-primary" >Start Recognition</button>
                                 </form>
