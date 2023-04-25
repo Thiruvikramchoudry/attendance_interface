@@ -53,49 +53,32 @@
               <li class="nav-item px-2"><a class="nav-link fw-medium" href="#live">INFORMATION </a></li>
                 <li class="nav-item px-2"><a class="nav-link fw-medium" href="#contact">CONTACT </a></li>
             </ul>
-{#            <form class="d-flex">#}
-{#              <button id="signin-dropdown" class="btn btn-lg btn-dark bg-gradient dropdown-toggle order-0" type="submit" data-bs-toggle="dropdown" aria-expanded="false">SIGN UP</button>#}
-{#              <ul class="dropdown-menu" aria-labelledby="signin-dropdown">#}
-{#    <li><a class="dropdown-item" href="#">Employee Login</a></li>#}
-{#    <li><a class="dropdown-item" href="#">Student Login</a></li>#}
-{#  </ul>#}
-{#                <button class="btn btn-lg btn-dark bg-gradient order-0" type="submit" style="margin-left: 13px">SIGN IN</button>#}
-
 
               <div class="btn-group" role="group">
                   <div class="dropdown">
-    <button id="signin-dropdown" type="button" class="btn btn-lg btn-dark bg-gradient dropdown-toggle order-0" data-bs-toggle="dropdown" aria-expanded="false">
+    <button id="signin-dropdown" type="button" class="btn btn-lg btn-dark bg-gradient dropdown-toggle order-0" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #0BAC56;border: none;">
       SIGN IN
     </button>
-    <ul class="dropdown-menu" aria-labelledby="signin-dropdown" style="background-color: #1F1534;border-color: #19112a">
-      <li><a class="dropdown-item" href="{% url 'add_employee' %}" style="background-color: #1F1534;border-color: #19112a;color: white;text-align: center">EMPLOYEE </a></li>
-{#      <li><a class="dropdown-item" href="#" style="background-color: #1F1534;border-color: #19112a;color: white;text-align: center">SUPERVISOR</a></li>#}
-    </ul>
+    <ul class="dropdown-menu" aria-labelledby="signin-dropdown" style="background-color: #0BAC56;border-color: #0BAC56">
+      <li><a class="dropdown-item" href="{% url 'add_employee' %}" style="background-color: #0BAC56;border-color: #0BAC56;color: white;text-align: center">EMPLOYEE </a></li> </ul>
   </div>
   <div class="dropdown">
-    <button id="signup-dropdown" type="button" class="btn btn-lg btn-dark bg-gradient dropdown-toggle order-0" data-bs-toggle="dropdown" aria-expanded="false"  style="margin-left: 20px">
+    <button id="signup-dropdown" type="button" class="btn btn-lg btn-dark bg-gradient dropdown-toggle order-0" data-bs-toggle="dropdown" aria-expanded="false"  style="margin-left: 20px;background-color: #0BAC56;border: none;">
       SIGN UP
     </button>
-    <ul class="dropdown-menu" aria-labelledby="signup-dropdown" style="background-color: #1F1534;border-color: #19112a">
-      <li><a class="dropdown-item" href="{%  url 'login_supervisor' %}" style="background-color: #1F1534;border-color: #19112a;color: white;text-align: center">SUPERVISOR</a></li>
-      <li><a class="dropdown-item" href="{% url 'login_admin' %}" style="background-color: #1F1534;border-color: #19112a;color: white;text-align: center">ADMIN</a></li>
+    <ul class="dropdown-menu" aria-labelledby="signup-dropdown" style="background-color: #0BAC56;border-color: #0BAC56">
+      <li><a class="dropdown-item" href="{%  url 'login_supervisor' %}" style="background-color: #0BAC56;border-color: #000000;color: white;text-align: center;margin-bottom: 5px;">SUPERVISOR</a></li>
+      <li><a class="dropdown-item" href="{% url 'login_admin' %}" style="background-color: #0BAC56;border-color: #011e0f;color: white;text-align: center">ADMIN</a></li>
     </ul>
   </div>
 </div>
-
-{#            </form>#}
           </div>
         </div>
       </nav>
       <section class="py-0" id="header">
         <div class="bg-holder d-none d-md-block" style="background-image:url({% static 'symbiote/home_style/assets/img/illustrations/hero-header.png' %});background-position:right top;background-size:contain;">
         </div>
-        <!--/.bg-holder-->
-
-{#        <div class="bg-holder d-md-none" style="background-image:url({% static 'assets/img/illustrations/hero-bg.png' %});background-position:right top;background-size:contain;">#}
-{#          <div class="bg-holder d-md-none" >#}
         </div>
-        <!--/.bg-holder-->
 
         <div class="container">
           <div class="row align-items-center min-vh-75 min-vh-lg-100">
@@ -159,56 +142,10 @@
           </div>
         </div>
       </section>
-
-
-      <!-- ============================================-->
-      <!-- <section> begin ============================-->
       <section class="py-5" id="invest">
 
-{#        <div class="container">#}
-{#          <div class="row justify-content-center">#}
-{#            <div class="col-xl-9 mb-3">#}
-{#              <div class="row">#}
-{#                <div class="col-lg-9 mb-3">#}
-{#                  <h5 class="fw-bold fs-3 fs-lg-5 lh-sm mb-3">Invest on your convenience</h5>#}
-{#                  <p class="mb-5">Autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla</p>#}
-{#                </div>#}
-{#                <div class="col-md-6 mb-5">#}
-{#                  <div class="card text-white"><img class="card-img" src="{% static 'assets/img/illustrations/NCS1.cms' %}" alt="..." />#}
-{#                    <div class="card-img-overlay d-flex flex-column justify-content-center px-5 px-md-3 px-lg-5 bg-dark-gradient">#}
-{#                      <h6 class="text-success pt-2">NATIONAL CAREER SERVICES</h6>#}
-{#                      <hr class="text-white" style="height:0.12rem;width:2.813rem" />#}
-{#                      <div class="pt-lg-3">#}
-{#                        <h6 class="fw-bold text-white fs-1 fs-md-2 fs-lg-3 w-xxl-50">NATIONAL CAREER SERVICES</h6>#}
-{#                        <p class="w-xxl-75"> The platform aims to provide a range of career-related services to individuals across India, with a focus on promoting inclusive growth and equal opportunities</p>#}
-{#                        <button class="btn btn-lg btn-light text-success" type="button">VIEW MORE</button>#}
-{#                      </div>#}
-{#                    </div>#}
-{#                  </div>#}
-{#                </div>#}
-{#                <div class="col-md-6 mb-5">#}
-{#                  <div class="card text-white"><img class="card-img" src="{% static 'assets/img/illustrations/PMKVY-1.jpg' %}" alt="..." />#}
-{#                    <div class="card-img-overlay d-flex flex-column justify-content-center px-5 px-md-3 px-lg-5 bg-light-gradient">#}
-{#                      <h6 class="text-success pt-2">FULLY FUNDED</h6>#}
-{#                      <hr class="text-white" style="height:0.12rem;width:2.813rem" />#}
-{#                      <div class="pt-lg-3">#}
-{#                        <h6 class="fw-bold text-white fs-1 fs-md-2 fs-lg-3 w-xxl-50">Pradhan Mantri Kaushal Vikas Yojana</h6>#}
-{#                        <p class="w-xxl-75">Consider farms that have long term investment program.</p>#}
-{#                        <button class="btn btn-lg btn-light text-success" type="button">Learn More</button>#}
-{#                      </div>#}
-{#                    </div>#}
-{#                  </div>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{#          </div>#}
-{#        </div>#}
-        <!-- end of .container-->
 
       </section>
-      <!-- <section> close ============================-->
-      <!-- ============================================-->
-
 
       <section class="py-0">
         <div class="bg-holder" style="background-image:url({% static 'symbiote/home_style/assets/img/illustrations/how-it-works.png' %});background-position:center bottom;background-size:cover;">
@@ -280,13 +217,7 @@
         <div class="container-lg" id="live">
           <div class="row flex-center">
             <div class="col-12 col-lg-10 col-xl-12">
-                <h1 style="text-align: center;color: #66BB6A !important"> LIVE RECORDS </h1>
-{#              <div class="bg-holder" style="background-image:url({% static 'assets/img/illustrations/testimonial-bg.png' %});background-position:top left;background-size:120px 83px;">#}
-              </div>
-              <!--/.bg-holder-->
-
-{#              <h6 class="fs-3 fs-lg-4 fw-bold lh-sm">What investors like you <br />are saying about Zou</h6>#}
-            </div>
+                <h1 style="text-align: center;color: #66BB6A !important"> LIVE RECORDS </h1></div></div>
             <div class="carousel slide pt-3" id="carouselExampleDark" data-bs-ride="carousel">
               <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="10000">
@@ -294,178 +225,45 @@
                     <div class="col-md-4 mb-5 mb-md-0">
                       <div class="card h-100 shadow">
                         <div class="card-body my-3">
-                          <div class="align-items-xl-center d-block d-xl-flex px-3">
-{#                              <img class="img-fluid me-3 me-md-2 me-lg-3" src="{% static 'assets/img/gallery/user-1.png' %}" width="50" alt="" />#}
-                            <div class="flex-1 align-items-center pt-2">
+                          <div class="align-items-xl-center d-block d-xl-flex px-3"><div class="flex-1 align-items-center pt-2">
                                 <br>
                               <h5 class="mb-0 fw-bold text-success" style="text-align: center">TOTAL PROJECTS IN LIVE</h5>
                                 <br>
-                                <h1 style="text-align: center"  >1200+</h1>
-{#                              <p class="fw-normal text-black">Telecommunication Engineer</p>#}
-                            </div>
-                          </div>
-{#                          <p class="mb-0 px-3 px-md-2 px-xxl-3">&quot;Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae</p>#}
-                        </div>
+                                <h1 style="text-align: center"  >1200+</h1></div>
+                          </div></div>
                       </div>
                     </div>
                     <div class="col-md-4 mb-5 mb-md-0">
                       <div class="card h-100 shadow">
                         <div class="card-body my-3">
-                          <div class="align-items-xl-center d-block d-xl-flex px-3">
-{#                              <img class="img-fluid me-3 me-md-2 me-lg-3" src="{% static 'assets/img/gallery/user-2.png' %}" width="50" alt="" />#}
-                            <div class="flex-1 align-items-center pt-2">
+                          <div class="align-items-xl-center d-block d-xl-flex px-3"><div class="flex-1 align-items-center pt-2">
                                 <br>
                               <h5 class="mb-0 fw-bold text-success" style="text-align: center">TOTAL EMPLOYEES WORKING</h5>
                                 <br>
-                                <h1 style="text-align: center">900+</h1>
-{#                              <p class="fw-normal text-black">Head of Agrogofund </p>#}
-                            </div>
-                          </div>
-{#                          <p class="mb-0 px-3 px-md-2 px-xxl-3">&quot;At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium </p>#}
-                        </div>
+                                <h1 style="text-align: center">900+</h1></div>
+                          </div></div>
                       </div>
                     </div>
                     <div class="col-md-4 mb-5 mb-md-0">
                       <div class="card h-100 shadow">
                         <div class="card-body my-3">
-                          <div class="align-items-xl-center d-block d-xl-flex px-3">
-{#                              <img class="img-fluid me-3 me-md-2 me-lg-3" src="{% static 'assets/img/gallery/user-3.png' %}" width="50" alt="" />#}
-                            <div class="flex-1 align-items-center pt-2">
+                          <div class="align-items-xl-center d-block d-xl-flex px-3"><div class="flex-1 align-items-center pt-2">
                                 <br>
-                              <h5 class="mb-0 fw-bold text-success" style="text-align: center">REQUIRED NUMBER OF EMPLOYEES</h5>
-{#                              <p class="fw-normal text-black">Herbalist</p>#}
-                                <br>
+                              <h5 class="mb-0 fw-bold text-success" style="text-align: center">REQUIRED NUMBER OF EMPLOYEES</h5><br>
                                 <h1 style="text-align: center">500+</h1>
 
                             </div>
-                          </div>
-{#                          <p class="mb-0 px-3 px-md-2 px-xxl-3">&quot;At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium </p>#}
-                        </div>
+                          </div></div>
                       </div>
                     </div>
                   </div>
                 </div>
-{#                <div class="carousel-item" data-bs-interval="2000">#}
-{#                  <div class="row h-100 mx-3 mx-sm-5 mx-md-4 my-md-7 m-lg-7 mt-7">#}
-{#                    <div class="col-md-4 mb-5 mb-md-0">#}
-{#                      <div class="card h-100 shadow">#}
-{#                        <div class="card-body my-3">#}
-{#                          <div class="align-items-xl-center d-block d-xl-flex px-3"><img class="img-fluid me-3 me-md-2 me-lg-3" src="{% static 'assets/img/gallery/user-1.png' %}" width="50" alt="" />#}
-{#                            <div class="flex-1 align-items-center pt-2">#}
-{#                              <h5 class="mb-0 fw-bold text-success">Fernando Soler</h5>#}
-{#                              <p class="fw-normal text-black">Telecommunication Engineer</p>#}
-{#                            </div>#}
-{#                          </div>#}
-{#                          <p class="mb-0 px-3 px-md-2 px-xxl-3">&quot;Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae</p>#}
-{#                        </div>#}
-{#                      </div>#}
-{#                    </div>#}
-{#                    <div class="col-md-4 mb-5 mb-md-0">#}
-{#                      <div class="card h-100 shadow">#}
-{#                        <div class="card-body my-3">#}
-{#                          <div class="align-items-xl-center d-block d-xl-flex px-3"><img class="img-fluid me-3 me-md-2 me-lg-3" src="{% static 'assets/img/gallery/user-2.png' %}" width="50" alt="" />#}
-{#                            <div class="flex-1 align-items-center pt-2">#}
-{#                              <h5 class="mb-0 fw-bold text-success">Ilone Pickford</h5>#}
-{#                              <p class="fw-normal text-black">Head of Agrogofund Groups </p>#}
-{#                            </div>#}
-{#                          </div>#}
-{#                          <p class="mb-0 px-3 px-md-2 px-xxl-3">&quot;At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium </p>#}
-{#                        </div>#}
-{#                      </div>#}
-{#                    </div>#}
-{#                    <div class="col-md-4 mb-5 mb-md-0">#}
-{#                      <div class="card h-100 shadow">#}
-{#                        <div class="card-body my-3">#}
-{#                          <div class="align-items-xl-center d-block d-xl-flex px-3"><img class="img-fluid me-3 me-md-2 me-lg-3" src="{% static 'assets/img/gallery/user-3.png' %}" width="50" alt="" />#}
-{#                            <div class="flex-1 align-items-center pt-2">#}
-{#                              <h5 class="mb-0 fw-bold text-success">Ed O’Brien</h5>#}
-{#                              <p class="fw-normal text-black">Herbalist</p>#}
-{#                            </div>#}
-{#                          </div>#}
-{#                          <p class="mb-0 px-3 px-md-2 px-xxl-3">&quot;Ui dolorem eum fugiat quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio</p>#}
-{#                        </div>#}
-{#                      </div>#}
-{#                    </div>#}
-{#                  </div>#}
-{#                </div>#}
-{#                <div class="carousel-item">#}
-{#                  <div class="row h-100 mx-3 mx-sm-5 mx-md-4 my-md-7 m-lg-7 mt-7">#}
-{#                    <div class="col-md-4 mb-5 mb-md-0">#}
-{#                      <div class="card h-100 shadow">#}
-{#                        <div class="card-body my-3">#}
-{#                          <div class="align-items-xl-center d-block d-xl-flex px-3"><img class="img-fluid me-3 me-md-2 me-lg-3" src="{% static 'assets/img/gallery/user-1.png' %}" width="50" alt="" />#}
-{#                            <div class="flex-1 align-items-center pt-2">#}
-{#                              <h5 class="mb-0 fw-bold text-success">Fernando Soler</h5>#}
-{#                              <p class="fw-normal text-black">Telecommunication Engineer</p>#}
-{#                            </div>#}
-{#                          </div>#}
-{#                          <p class="mb-0 px-3 px-md-2 px-xxl-3">&quot;Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae</p>#}
-{#                        </div>#}
-{#                      </div>#}
-{#                    </div>#}
-{#                    <div class="col-md-4 mb-5 mb-md-0">#}
-{#                      <div class="card h-100 shadow">#}
-{#                        <div class="card-body my-3">#}
-{#                          <div class="align-items-xl-center d-block d-xl-flex px-3"><img class="img-fluid me-3 me-md-2 me-lg-3" src="{% static 'assets/img/gallery/user-2.png' %}" width="50" alt="" />#}
-{#                            <div class="flex-1 align-items-center pt-2">#}
-{#                              <h5 class="mb-0 fw-bold text-success">Ilone Pickford</h5>#}
-{#                              <p class="fw-normal text-black">Head of Agrogofund Groups </p>#}
-{#                            </div>#}
-{#                          </div>#}
-{#                          <p class="mb-0 px-3 px-md-2 px-xxl-3">&quot;At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium </p>#}
-{#                        </div>#}
-{#                      </div>#}
-{#                    </div>#}
-{#                    <div class="col-md-4 mb-5 mb-md-0">#}
-{#                      <div class="card h-100 shadow">#}
-{#                        <div class="card-body my-3">#}
-{#                          <div class="align-items-xl-center d-block d-xl-flex px-3"><img class="img-fluid me-3 me-md-2 me-lg-3" src="{% static 'assets/img/gallery/user-3.png' %}" width="50" alt="" />#}
-{#                            <div class="flex-1 align-items-center pt-2">#}
-{#                              <h5 class="mb-0 fw-bold text-success">Ed O’Brien</h5>#}
-{#                              <p class="fw-normal text-black">Herbalist</p>#}
-{#                            </div>#}
-{#                          </div>#}
-{#                          <p class="mb-0 px-3 px-md-2 px-xxl-3">&quot;Ui dolorem eum fugiat quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio</p>#}
-{#                        </div>#}
-{#                      </div>#}
-{#                    </div>#}
-{#                  </div>#}
-{#                </div>#}
-              </div>
-{#              <div class="row px-3 px-sm-6 px-md-0 px-lg-5 px-xl-4">#}
-{#                <div class="col-12 position-relative"><a class="carousel-control-prev carousel-icon z-index-2" href="#carouselExampleDark" role="button" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></a><a class="carousel-control-next carousel-icon z-index-2" href="#carouselExampleDark" role="button" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></a></div>#}
-{#              </div>#}
-            </div>
-          </div>
-{#        </div>#}
-      </section>
+              </div></div>
+          </div> </section>
 
 
-      <!-- ============================================-->
-      <!-- <section> begin ============================-->
-{#      <section class="z-index-1 cta">#}
 
-{#        <div class="container">#}
-{#          <div class="row flex-center">#}
-{#            <div class="col-12">#}
-{#              <div class="card shadow h-100 py-5">#}
-{#                <div class="card-body text-center">#}
-{#                  <h1 class="fw-semi-bold mb-4">The future of &nbsp;<span class="text-success">Farm Investing</span> &nbsp; is Zou</h1><a class="btn btn-lg btn-success px-6" href="#" role="button">Invest Now</a>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{#          </div>#}
-{#        </div>#}
-        <!-- end of .container-->
-
-{#      </section>#}
-      <!-- <section> close ============================-->
-      <!-- ============================================-->
-
-{#<div style="border: 3px solid red" >#}
         <div class="col-lg-8" style="margin-left: 16%;margin-bottom: 13%" id="contact">
-
-					<!-- Contact Form -->
 					<div class="contact_form" style="justify-content: center">
 						<div class="contact_title" style="text-align: center">CONTACT</div>
 
@@ -480,34 +278,19 @@
 					</div>
 
 				</div>
-{#    </div>#}
       <section class="py-0" >
-{#        <div class="bg-holder" style="background-image:url({% static 'assets/img/illustrations/footer-bg.png' %});background-position:center;background-size:cover;">#}
-{#        </div>#}
-        <!--/.bg-holder-->
-
         <div class="container">
           <div class="row justify-content-lg-between min-vh-auto" >
             <div class="col-6 col-sm-4 col-lg-auto mb-3">
               <h6 class="mb-3 text-1000 fw-semi-bold">MENU </h6>
               <ul class="list-unstyled mb-md-4 mb-lg-0">
                 <li class="mb-3"><a class="text-700 text-decoration-none" href="#top">ABOUT US</a></li>
-{#                <li class="mb-3"><a class="text-700 text-decoration-none" href="#!">Team</a></li>#}
                 <li class="mb-3"><a class="text-700 text-decoration-none" href="#Opportuanities">OPPORTUNITIES</a></li>
                 <li class="mb-3"><a class="text-700 text-decoration-none" href="#procedure">PROCEDURE</a></li>
                 <li class="mb-3"><a class="text-700 text-decoration-none" href="#information">INFORMATION</a></li>
                   <li class="mb-3"><a class="text-700 text-decoration-none" href="#contact">CONTACT</a></li>
               </ul>
             </div>
-{#            <div class="col-6 col-sm-4 col-lg-auto mb-3">#}
-{#              <h6 class="mb-3 text-1000 fw-semi-bold">INVEST </h6>#}
-{#              <ul class="list-unstyled mb-md-4 mb-lg-0">#}
-{#                <li class="mb-3"><a class="text-700 text-decoration-none" href="#!">Features</a></li>#}
-{#                <li class="mb-3"><a class="text-700 text-decoration-none" href="#!">How it works</a></li>#}
-{#                <li class="mb-3"><a class="text-700 text-decoration-none" href="#!">Pricing</a></li>#}
-{#                <li class="mb-3"><a class="text-700 text-decoration-none" href="#!">Login</a></li>#}
-{#              </ul>#}
-{#            </div>#}
             <div class="col-6 col-sm-4 col-lg-auto mb-3">
               <h6 class="mb-3 text-1000 fw-semi-bold">LEGAL </h6>
               <ul class="list-unstyled mb-md-4 mb-lg-0">
@@ -516,25 +299,10 @@
                 <li class="mb-3"><a class="text-700 text-decoration-none" href="#!">SECURITY</a></li>
               </ul>
             </div>
-{#            <div class="col-12 col-lg-auto mb-3">#}
-{#              <div class="card bg-success">#}
-{#                <div class="card-body p-sm-4">#}
-{#                  <h5 class="text-white">Blog Zou</h5>#}
-{#                  <p class="mb-0 text-white">write email to us<span class="text-white fs--1 fs-sm-1">info@zoufarm.com</span></p>#}
-{#                  <button class="btn btn-light text-success" type="button">#}
-{#                    <svg class="bi bi-person me-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#76C279" viewBox="0 0 16 16">#}
-{#                      <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"></path>#}
-{#                    </svg>Sing In#}
-{#                  </button>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
           </div>
           <hr class="text-300 mb-0" />
           <div class="row flex-center py-5" style="padding-bottom: 40px">
-            <div class="col-12 col-sm-8 col-md-6 text-center text-md-start"> <a class="text-decoration-none" href="#">
-{#                <img class="d-inline-block align-top img-fluid" src="{%  static 'assets/img/gallery/logo-icon.png' %}" alt="" width="40" />#}
-                <span class="text-theme font-monospace fs-3 ps-2">MGNREA</span></a></div>
+            <div class="col-12 col-sm-8 col-md-6 text-center text-md-start"> <a class="text-decoration-none" href="#"><span class="text-theme font-monospace fs-3 ps-2">MGNREA</span></a></div>
             <div class="col-12 col-sm-8 col-md-6">
               <p class="fs--1 text-dark my-2 text-center text-md-end">Copyright © 2023 MGNREA. All rights reserved.
                 <svg class="bi bi-suit-heart-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#76C279" viewBox="0 0 16 16">
@@ -546,10 +314,6 @@
         </div>
       </section>
     </main>
-    <!-- ===============================================-->
-    <!--    End of Main Content-->
-    <!-- ===============================================-->
-
 <script>
 	const form = document.getElementById('contact-form');
 form.addEventListener('submit', e => {
@@ -572,11 +336,6 @@ form.addEventListener('submit', e => {
 
 
 </script>
-
-
-    <!-- ===============================================-->
-    <!--    JavaScripts-->
-    <!-- ===============================================-->
     <script src="{% static 'symbiote/home_style/vendors/@popperjs/popper.min.js' %}"></script>
     <script src="{% static 'symbiote/home_style/vendors/bootstrap/bootstrap.min.js' %}"></script>
     <script src="{% static 'symbiote/home_style/vendors/is/is.min.js' %}"></script>

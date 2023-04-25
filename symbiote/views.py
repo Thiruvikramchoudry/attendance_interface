@@ -87,11 +87,56 @@ def new_project(request):
     for i in supervisor:
         if i.status == False:
             supervisor_available.append(i)
+    employee_det = employee_details.objects.all()
+    emp_id = []
+    for i in employee_det:
+        if len(employee_assign.objects.filter(employee_id=i.employee_id)) == 0:
+            emp_id.append(i)
 
     if request.method == "POST":
-        pass
+        l=[]
+
+        project_area = request.POST['project_area']
+        employee_required = request.POST['employee_required']
+        supervisor_name = request.POST['supervisor']
+
+        if len(supervisor_detail.objects.filter(username=supervisor_name))==0:
+            print("yes")
+            return render(request, 'symbiote/new_project.html', {'username': request.user, 'supervisor_available': supervisor_available})
+
+        phone_number = request.POST['phone_number']
+        from_date = request.POST['from_date']
+        to_date = request.POST['to_date']
+        for i in project.objects.all():
+            l.append(i.project_id)
+        project_id = max(l) + 1 if l!=[] else 100000
+        project1 = project.objects.create(project_id=project_id, project_area=project_area, employee_required=employee_required,supervisor=supervisor_name,phone_number=phone_number,from_date=from_date,to_date=to_date)
+        project1.save()
+        print(project_id, project_area, employee_required, supervisor, phone_number, from_date, to_date)
+        user=supervisor_detail.objects.get(username=supervisor_name)
+        user.status=True
+        user.save()
+        employee_list=request.POST['employee_list']
+        employee_list=employee_list.split(',')
+        today=datetime.date.today()
+        data=[False]*len(employee_list)
+        data2 = {'emp_id': employee_list,
+                 str(from_date): data}
+        df2 = pd.DataFrame(data2)
+        df2.to_excel('symbiote/project_updates/'+str(project_id)+'.xlsx',index = False)
+        for i in employee_list:
+            detail=employee_details.objects.get(employee_id=i);
+            detail.working_status=True
+            detail.save()
+            emp_ass=employee_assign(employee_id=i,project_id=project_id)
+            emp_ass.save()
+
+        supervisor_ass=supervisor_assign(project_id=project_id,supervisor_username=supervisor_name,employee_list='symbiote/project_updates/'+str(project_id))
+        supervisor_ass.save()
+
+        return render(request, 'symbiote/new_project.html', {'username': request.user,'supervisor_available':supervisor_available})
     else:
-        return render(request, 'symbiote/new_project.html', {''})
+        return render(request, 'symbiote/new_project.html', {'username':request.user,'supervisor_available':supervisor_available,'emp_details':emp_id})
 
 
 # def sample(request):
@@ -321,3 +366,39 @@ def login_supervisor(request):
 
 def imagecreation(request):
     return render(request, 'symbiote/imagecreation.html')
+
+def add_supervisor(request):
+    if request.method=='POST':
+        username=request.POST['username']
+        password=request.POST['password']
+        name=request.POST['name']
+        supervisor_details=supervisor_detail(username=username,password=password,supervisor_name=name,status=False)
+        supervisor_details.save()
+        return redirect('admin_page')
+
+    return render(request,'symbiote/add_supervisor.html',{'username':request.user})
+
+
+def morning_update(request):
+    if request.method=='POST':
+        pass
+    else:
+        projects=project.objects.all()
+        return render(request,'symbiote/morning_update.html',{'username':request.user,'projects':projects})
+
+def closing_update(request):
+    if request.method=='POST':
+        pass
+    else:
+        projects=project.objects.all()
+        return render(request,'symbiote/closing_update.html',{'username':request.user,'projects':projects})
+
+
+def clear_project(request):
+    if request.method=='POST':
+        pass
+    else:
+        projects=project.objects.all()
+        return render(request,'symbiote/closing_update.html',{'username':request.user,'projects':projects})
+
+
