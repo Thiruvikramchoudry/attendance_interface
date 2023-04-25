@@ -89,24 +89,40 @@ def new_project(request):
     for i in supervisor:
         if i.status == False:
             supervisor_available.append(i)
+    employee_det = employee_details.objects.all()
+    emp_id = []
+    for i in employee_det:
+        if len(employee_assign.objects.filter(employee_id=i.employee_id)) == 0:
+            emp_id.append(i)
 
     if request.method == "POST":
         l=[]
+
         project_area = request.POST['project_area']
         employee_required = request.POST['employee_required']
-        supervisor = request.POST['supervisor']
+        supervisor_name = request.POST['supervisor']
+
+        if len(supervisor_detail.objects.filter(username=supervisor_name))==0:
+            print("yes")
+            return render(request, 'symbiote/new_project.html', {'username': request.user, 'supervisor_available': supervisor_available})
+
         phone_number = request.POST['phone_number']
         from_date = request.POST['from_date']
         to_date = request.POST['to_date']
         for i in project.objects.all():
             l.append(i.project_id)
-        project_id = max(l) + 1
-        project1 = project.objects.create(project_id=project_id, project_area=project_area, employee_required=employee_required,supervisor=supervisor,phone_number=phone_number,from_date=from_date,to_date=to_date)
+        project_id = max(l) + 1 if l!=[] else 100000
+        project1 = project.objects.create(project_id=project_id, project_area=project_area, employee_required=employee_required,supervisor=supervisor_name,phone_number=phone_number,from_date=from_date,to_date=to_date)
         project1.save()
         print(project_id, project_area, employee_required, supervisor, phone_number, from_date, to_date)
+        user=supervisor_detail.objects.get(username=supervisor)
+        user.status=True
+        user.save()
+
+        #supervisor_ass=supervisor_assign(project_id=project_id,supervisor_username=supervisor_name)
         return render(request, 'symbiote/new_project.html', {'username': request.user,'supervisor_available':supervisor_available})
     else:
-        return render(request, 'symbiote/new_project.html', {'username':request.user,'supervisor_available':supervisor_available})
+        return render(request, 'symbiote/new_project.html', {'username':request.user,'supervisor_available':supervisor_available,'emp_details':emp_id})
 
 
 # def sample(request):
@@ -203,77 +219,6 @@ def add_employee(request):
     return render(request, 'symbiote/add_employee.html')
 
 
-# def save_excel(request):
-#     employee=details.objects.all()
-#     emp_id=[]
-#     for i in employee:
-#         emp_id.append(i.Employee_id)
-#     today_status=attendence_area.objects.filter(date=datetime.date.today())
-#     late_entry=[];present=[]
-#     for i in today_status:
-#         time=i.Time
-#         time = str((time)).split(":")
-#         hh = int(time[0])
-#         mm = int(time[1])
-#
-#         if hh > 10 or (hh == 10 and mm != 0):
-#             late_entry.append(i.Employee_id)
-#         else:
-#             present.append(i.Employee_id)
-#     lateandpresent=present+late_entry
-#     absent_entry=set(emp_id)-set(lateandpresent)
-#     status=[]
-#     for i in emp_id:
-#         if i in late_entry:
-#             status.append([i,"Late"])
-#         elif i in present:
-#             status.append([i,"present"])
-#         elif i in absent_entry:
-#             status.append([i,"absent"])
-#
-#
-#     #df = pd.DataFrame(status, columns=['Employee_Id', 'Status'])
-#     date=datetime.datetime.today().date()
-#     #df.to_excel("symbiote/static/symbiote/index_styles/attendance_status_files/"+(str(date) + ".xlsx"))
-#     return redirect('sample')
-#
-# def save_clear(request):
-#     print("yes")
-#     employee = details.objects.all()
-#     emp_id = []
-#     for i in employee:
-#         emp_id.append(i.Employee_id)
-#     today_status = attendence_area.objects.filter(date=datetime.date.today())
-#     late_entry = []
-#     present = []
-#     for i in today_status:
-#         time = i.Time
-#         time = str((time)).split(":")
-#         hh = int(time[0])
-#         mm = int(time[1])
-#         if hh > 10 or (hh == 10 and mm != 0):
-#             late_entry.append(i.Employee_id)
-#         else:
-#             present.append(i.Employee_id)
-#     lateandpresent = present + late_entry
-#     absent_entry = set(emp_id) - set(lateandpresent)
-#     status = []
-#     for i in emp_id:
-#         if i in late_entry:
-#             status.append([i, "Late"])
-#         elif i in present:
-#             status.append([i, "present"])
-#         elif i in absent_entry:
-#             status.append([i, "absent"])
-#     print(status)
-#
-#
-#     #df = pd.DataFrame(status, columns=['Employee_Id', 'Status'])
-#     date=datetime.datetime.today().date()
-#     #df.to_excel("symbiote/static/symbiote/index_styles/attendance_status_files/"+(str(date) + ".xlsx"))
-#     data = attendence_area.objects.all()
-#     data.delete()
-#     return redirect('/')
 
 
 def download_stats(request):
@@ -350,5 +295,6 @@ def morning_update(request):
     if request.method=='POST':
         pass
     else:
-        return render(request,'symbiote/morning_update.html')
+        projects=project.objects.all()
+        return render(request,'symbiote/morning_update.html',{'username':request.user,'projects':projects})
 

@@ -17,11 +17,7 @@
     <!-- ===============================================-->
     <!--    Favicons-->
     <!-- ===============================================-->
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'symbiote/home_style/assets/img/favicons/apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'symbiote/home_style/assets/img/favicons/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'symbiote/home_style/assets/img/favicons/favicon-16x16.png' %}">
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'symbiote/home_style/assets/img/favicons/favicon.ico' %}">
-    <link rel="manifest" href="{% static 'symbiote/home_style/assets/img/favicons/manifest.json' %}">
+    <link href="{%  static 'symbiote/index_styles/img/favicon - Copy.ico' %}" rel="icon">
     <meta name="msapplication-TileImage" content="{% static 'symbiote/home_style/assets/img/favicons/mstile-150x150.png' %}">
     <meta name="theme-color" content="#ffffff">
       <link rel="stylesheet" href="{% static 'symbiote/home_style/assets/css/contact.css' %}">
@@ -57,10 +53,11 @@
               <div class="btn-group" role="group">
                   <div class="dropdown">
     <button id="signin-dropdown" type="button" class="btn btn-lg btn-dark bg-gradient dropdown-toggle order-0" data-bs-toggle="dropdown" aria-expanded="false">
-      SIGN IN
+      EMPLOYEE
     </button>
     <ul class="dropdown-menu" aria-labelledby="signin-dropdown" style="background-color: #1F1534;border-color: #19112a">
-      <li><a class="dropdown-item" href="{% url 'add_employee' %}" style="background-color: #1F1534;border-color: #19112a;color: white;text-align: center">EMPLOYEE </a></li> </ul>
+      <li><a class="dropdown-item" href="#" style="background-color: #1F1534;border-color: #19112a;color: white;text-align: center">SIGN IN </a></li>
+      <li><a class="dropdown-item" href="{% url 'add_employee' %}" style="background-color: #1F1534;border-color: #19112a;color: white;text-align: center">SIGN UP </a></li> </ul>
   </div>
   <div class="dropdown">
     <button id="signup-dropdown" type="button" class="btn btn-lg btn-dark bg-gradient dropdown-toggle order-0" data-bs-toggle="dropdown" aria-expanded="false"  style="margin-left: 20px">
@@ -269,10 +266,10 @@
 
 						<div class="contact_form_container">
 							<form id="contact-form" method="POST" action="https://formspree.io/f/xyx@gmail.com">
-								<input id="name" class="input_field contact_form_name" type="text" placeholder="Name" required="required" data-error="Name is required." style="background: lightcyan;color: black" >
-								<input id="email" class="input_field contact_form_email" type="email" placeholder="E-mail" required="required" data-error="Valid email is required." style="background: lightcyan;color: black">
-								<textarea id="message" class="text_field contact_form_message" name="message" placeholder="Message" required="required" data-error="Please, write us a message." style="background: lightcyan;color: black"></textarea>
-								<button type="submit" class="contact_send_btn trans_200">send message</button>
+								<input id="name" class="input_field contact_form_name" type="text" placeholder="Name" required="required" data-error="Name is required." style="background: #0BAC56 !important;color: black;border: 2px solid black" >
+								<input id="email" class="input_field contact_form_email" type="email" placeholder="E-mail" required="required" data-error="Valid email is required." style="background: #0BAC56 !important;color: black;border: 2px solid black">
+								<textarea id="message" class="text_field contact_form_message" name="message" placeholder="Message" required="required" data-error="Please, write us a message." style="background: #0BAC56 !important;color: black;border: 2px solid black"></textarea>
+								<button type="submit" class="contact_send_btn trans_200" style="color: #0BAC56 !important;background: black">send message</button>
 							</form>
 						</div>
 					</div>
@@ -301,7 +298,8 @@
             </div>
           </div>
           <hr class="text-300 mb-0" />
-          <div class="row flex-center py-5" style="padding-bottom: 40px">
+          <div class="row flex-center py-5" style="
+          padding-bottom: 40px">
             <div class="col-12 col-sm-8 col-md-6 text-center text-md-start"> <a class="text-decoration-none" href="#"><span class="text-theme font-monospace fs-3 ps-2">MGNREA</span></a></div>
             <div class="col-12 col-sm-8 col-md-6">
               <p class="fs--1 text-dark my-2 text-center text-md-end">Copyright © 2023 MGNREA. All rights reserved.

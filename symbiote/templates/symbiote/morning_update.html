@@ -10,7 +10,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="{%  static 'symbiote/index_styles/img/favicon.ico' %}" rel="icon">
+    <link href="{%  static 'symbiote/index_styles/img/favicon - Copy.ico' %}" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,13 +60,13 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="{% url 'admin_page' %}" class="nav-item nav-link active" ><i class="fa fa-tachometer-alt me-2"></i><span style="color: #F2F2F0">Dashboard</span></a>
+                    <a href="{% url 'admin_page' %}" class="nav-item nav-link " ><i class="fa fa-tachometer-alt me-2"></i><span style="color: #F2F2F0">Dashboard</span></a>
                     <a href="{% url 'project_details' %}" class="nav-item nav-link"><i class="fa fa-th me-2"></i><span style="color: #F2F2F0">Project Details</span></a>
                     <a href="{% url 'employee_detail_all'  %}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i><span style="color: #F2F2F0">Employee Details</span></a>
                     <a href="{% url 'new_project' %}" class="nav-item nav-link"><i class="fa fa-table me-2"></i><span style="color: #F2F2F0">New Project</span></a>
                     <a href="{% url 'add_supervisor' %}" class="nav-item nav-link"><i class="fa fa-table me-2"></i><span style="color: #F2F2F0">New Supervisor</span></a>
+                    <a href="{% url 'morning_update' %}" class="nav-item nav-link active"><i class="fa fa-chart-bar me-2"></i><span style="color: #F2F2F0">Morning Update's</span></a>
 
-                    <a href="{% url 'morning_update' %}" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i><span style="color: #F2F2F0">Morning Update's</span></a>
                 </div>
             </nav>
         </div>
@@ -165,50 +165,33 @@
                 </div>
             </nav>
             <!-- Navbar End -->
-
-
-            <!-- Sale & Revenue Start -->
             <div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-line fa-3x text-primary"></i>
-                            <div class="ms-3">
-                                <p class="mb-2">Total Employee</p>
-                                <h6 class="mb-0">{{ total_employee }}</h6>
-                            </div>
+                <div class="bg-light text-center rounded p-4">
+                    <h4 style="color: #85CDFD;text-align: left;">
+                        PROJECT'S
+                    </h4>
+                <div style="display: flex">
+                    {% for i in projects %}
+                        <div id="sample" style="background-color: #85cdfd;width:80px;border-radius: 40px;height: 25px;margin-right: 15px;">
+                            {{ i.project_id }}
                         </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-bar fa-3x text-primary"></i>
-                            <div class="ms-3">
-                                <p class="mb-2">Projects</p>
-                                <h6 class="mb-0">{{ project_count }}</h6>
+                    {% endfor %}
+                </div>
+                <br>
+                <form action="">
+                         {% csrf_token %}
+                            <div >
+                                <button class="btn  btn-rounded btn-fw" type="submit" style="background-color: #85CDFD ; color:black">SUBMIT</button>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-area fa-3x text-primary"></i>
-                            <div class="ms-3">
-                                <p class="mb-2">Employee_required</p>
-                                <h6 class="mb-0">{{ employee_required }}</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-pie fa-3x text-primary"></i>
-                            <div class="ms-3">
-                                <p class="mb-2">Supervisor Count</p>
-                                <h6 class="mb-0">{{ supervisor_count }}</h6>
-                            </div>
-                        </div>
-                    </div>
+                    </form>
+
+
+
+
                 </div>
             </div>
-            <!-- Sale & Revenue End -->
+
+
 
 
 
@@ -255,5 +238,8 @@
     <!-- Template Javascript -->
     <script src="{%  static 'symbiote/index_styles/js/main.js' %}"></script>
 </body>
+<script>
+
+</script>
 
 </html>
