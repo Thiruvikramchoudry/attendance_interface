@@ -64,7 +64,14 @@
                     <a href="{% url 'project_details' %}" class="nav-item nav-link"><i class="fa fa-th me-2"></i><span style="color: #F2F2F0">Project Details</span></a>
                     <a href="{% url 'employee_detail_all'  %}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i><span style="color: #F2F2F0">Employee Details</span></a>
                     <a href="{% url 'new_project' %}" class="nav-item nav-link active"><i class="fa fa-table me-2"></i><span style="color: #F2F2F0">New Project</span></a>
-                    <a href="{% url 'download_stats' %}" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i><span style="color: #F2F2F0">Manual Entry</span></a>
+                    <a href="{% url 'add_supervisor' %}" class="nav-item nav-link"><i class="fa fa-table me-2"></i><span style="color: #F2F2F0">New Supervisor</span></a>
+
+                    <a href="{% url 'morning_update' %}" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i><span style="color: #F2F2F0">Morning Update's</span></a>
+                    <a href="{% url 'closing_update' %}" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i><span style="color: #F2F2F0">Closing Update's</span></a>
+                    <a href="{% url 'clear_project' %}" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i><span style="color: #F2F2F0">Clear Project</span></a>
+
+
+
                 </div>
             </nav>
         </div>
@@ -178,9 +185,9 @@
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="inputPassword3" class="col-sm-2 col-form-label" style="color: whitesmoke">Employee Required</label>
+                                        <label for="inputPassword3" class="col-sm-2 col-form-label" style="color: whitesmoke"  >Employee Required</label>
                                         <div class="col-sm-10">
-                                            <input type="number" class="form-control" id="designation" style="background: #222f41;border: none" name="employee_required">
+                                            <input type="number" class="form-control" style="background: #222f41;border: none" name="employee_required" onkeyup="set_emp()" id="no_emp">
                                         </div>
                                     </div>
 
@@ -189,7 +196,7 @@
                                         <div class="col-sm-10">
                                           <select class="form-control" style="background: #222f41;border: none" name="supervisor" >
                                               <option selected>SELECT...</option>
-                                              {%  for i in supervisor %}
+                                              {%  for i in supervisor_available %}
                                               <option value="{{ i.username }}">{{  i.username}}</option>
                                               {% endfor %}
                                           </select>
@@ -203,10 +210,46 @@
                                         </div>
                                     </div>
 
+                                <div class="row mb-3">
+                                        <label for="inputPassword3" class="col-sm-2 col-form-label" style="color: whitesmoke">From Date</label>
+                                        <div class="col-sm-10">
+                                            <input type="date" class="form-control" id="designation" style="background: #222f41;border: none" name="from_date">
+                                        </div>
+                                    </div>
+                                <div class="row mb-3">
+                                        <label for="inputPassword3" class="col-sm-2 col-form-label" style="color: whitesmoke">To Date</label>
+                                        <div class="col-sm-10">
+                                            <input type="date" class="form-control" id="designation" style="background: #222f41;border: none" name="to_date">
+                                        </div>
+                                    </div>
+
                                     <br>
+                                <div style="display: flex;justify-content: center">
+                                    <label for="inputPassword3" class="col-sm-2 col-form-label" style="color: whitesmoke">Select Employee</label>
+                                <div style="width: 90%;height: 300px;background-color: #0c5460;overflow-y: scroll;padding: 10px;border-radius: 20px;">
+                                    <div class="alert alert-info" style="display: flex;justify-content: space-between;border-radius: 10px;background-color: #082b56;border: none">
+                                            <div>Employee Id</div>
+                                            <div>Employee Location</div>
+                                            <div>Employee Age</div>
+                                            <div>Employee Gender</div>
+                                            <div>Select Employee</div>
+                                        </div>
+                                    {%  for i in emp_details %}
+                                        <div class="alert alert-info " style="display: flex;justify-content: space-between;border-radius: 10px;border: none;background-color:red" id="{{ i.employee_id }}">
+                                            <div>{{ i.employee_id }}</div>
+                                            <div>{{ i.employee_location }}</div>
+                                            <div>{{ i.employee_age }}</div>
+                                            <div>{{ i.employee_gender }}</div>
+                                            <input type="checkbox" onclick="select_emp({{ i.employee_id }})">
+                                        </div>
+                                    {% endfor %}
+                                    </div>
+
+                                </div>
+                                    <input type="text" id="result" name="employee_list">
                                     <div style="position: relative;height: 70px;width: 100%;">
                             <div style="position:absolute;bottom:25%;right: 47%;">
-                                <button class="btn  btn-rounded btn-fw" type="submit" style="background-color: #85CDFD ; color:black">SUBMIT</button>
+                                <button class="btn  btn-rounded btn-fw" type="submit" style="background-color: #85CDFD ; color:black" id="submit" disabled>SUBMIT</button>
                             </div>
                         </div>
 {#                                    <div style="">#}
@@ -226,7 +269,7 @@
 
 
 
-            <input type="text" style="display: none" value="" id="data_getter">
+            <input type="text" style="display: none" value="" id="data_getter" >
 
 
 
@@ -265,6 +308,50 @@
 
     <!-- Template Javascript -->
     <script src="{%  static 'symbiote/index_styles/js/main.js' %}"></script>
+    <script>
+        let val=0;
+        let l=[];
+        let con=0;
+        function set_emp(){
+            val=document.getElementById('no_emp').value;
+            con=val;
+        }
+
+        function select_emp(emp_id){
+
+            console.log(emp_id);
+            let div=document.getElementById(emp_id.toString());
+            if(div.style.backgroundColor=="red"){
+                if (val!=0){
+                    l.push(emp_id);
+                    div.style.backgroundColor="blue"
+                    val-=1;
+                }else{
+                    div.style.backgroundColor="red"
+                }
+            }else{
+                if(val!=con){
+                    let k=l.indexOf(emp_id);
+                    l.pop(k);
+                    val+=1;
+                    div.style.backgroundColor="red"
+                }else{
+                    div.style.backgroundColor="blue"
+                }
+            }
+            let button=document.getElementById('submit');
+
+            if (l.length==con){
+                button.disabled=false;
+                console.log(result)
+                document.getElementById('result').value=l.toString();
+                console.log(result.value);
+            }
+            else{
+                button.disabled=true;
+            }
+        }
+    </script>
 </body>
 
 </html>

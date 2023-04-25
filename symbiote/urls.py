@@ -24,6 +24,10 @@ urlpatterns = [
     path('new_project', views.new_project, name="new_project"),
     path('video_feed', views.video_feed, name='video_feed'),
     path('stop_streaming', views.stop_streaming, name='stop_streaming'),
-    path('uncapture', views.uncapture, name='uncapture')
+    path('uncapture', views.uncapture, name='uncapture'),
+    path('add_supervisor',views.add_supervisor,name='add_supervisor'),
+    path('morning_update',views.morning_update,name="morning_update"),
+    path('closing_update',views.closing_update,name="closing_update"),
+    path('clear_project',views.clear_project,name="clear_project"),
 
 ]
