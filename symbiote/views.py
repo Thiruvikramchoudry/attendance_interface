@@ -12,6 +12,7 @@ from symbiote.svm_face_recognation.datasetCreation import VideoCamera, gen , ima
 from django.http import StreamingHttpResponse
 from symbiote.videocapture import Video,datacreation
 from django.http import FileResponse
+from symbiote.videocapture import Video , datacreation
 
 
 # Create your views here.
@@ -309,6 +310,8 @@ def login_supervisor(request):
     else:
         return render(request, 'symbiote/login2.html', {'message': ''})
 
+def imagecreation(request):
+    return render(request, 'symbiote/imagecreation.html')
 
 def add_supervisor(request):
     if request.method=='POST':
