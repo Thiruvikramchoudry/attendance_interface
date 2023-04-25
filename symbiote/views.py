@@ -1,18 +1,14 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User, auth
+from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate
 # from .models import details,attendence_area,absenteism_count
 from .models import supervisor_detail, supervisor_assign, project, employee_details, employee_assign
-import datetime, json
+import datetime
 import pandas as pd
 # import symbiote.main_db_connection as mdb
-import os
-import cv2
-from symbiote.svm_face_recognation.datasetCreation import VideoCamera, gen , imageCapture
+from symbiote.svm_face_recognation.datasetCreation import VideoCamera, imageCapture
 from django.http import StreamingHttpResponse
-from symbiote.videocapture import Video,datacreation
-from django.http import FileResponse
-from symbiote.videocapture import Video , datacreation
+from symbiote.svm_face_recognation.videocapture import Video , datacreation , lis , refresh
 
 
 # Create your views here.
@@ -197,31 +193,10 @@ def attendance_status(request):
     detail_name = df['Employee_name']
     detail_status = df['Status']
     details = []
-    print(emp_id, detail_name, detail_status,df)
     for i in range(len(detail_name)):
         details.append([emp_id[i], detail_name[i], detail_status[i]])
     return render(request, 'symbiote/attendance_status.html', {'username': request.user, 'details': details})
 
-    # project_id = supervisor_assign.objects.get(supervisor_username=request.user).project_id
-    # today = datetime.date.today()
-    # file_name = (str(today.day) + '-' + str(
-    #     today.month if len(str(today.month)) == 2 else '0' + str(today.month)) + '-' + str(today.year)) + ".xlsx"
-    # file_path = os.path.join('symbiote', 'employee_assign', str(project_id), file_name)
-    # df = pd.read_excel(file_path)
-    # emp_id = df['Employee_id']
-    # detail_name = df['Employee_name']
-    # detail_status = df['Status']
-    # details = []
-    # for i in range(len(detail_name)):
-    #     details.append([emp_id[i], detail_name[i], detail_status[i]])
-    # if request.GET.get('download', '') == 'true':
-    #     # Create a response object and set its content type
-    #     response = FileResponse(open(file_path, 'rb'), as_attachment=True)
-    #     response['content-type'] = 'application/vnd.ms-excel'
-    #     # Set the filename in the Content-Disposition header
-    #     response['Content-Disposition'] = f'attachment; filename="{file_name}"'
-    #     return response
-    # return render(request, 'symbiote/attendance_status.html', {'username': request.user, 'details': details})
 
 def add_employee(request):
     if request.method == "POST":
@@ -232,7 +207,7 @@ def add_employee(request):
         address = request.POST['address']
         phone = request.POST['phone_number']
         aadhar_number = request.POST['aadhar_number']
-        #emp = employee_details(username=name, age=age, date_of_birth=date_of_birth, gender=gender, address=address,phone_number=phone, aadhar_number=aadhar_number)
+        # emp = employee_details(username=name, age=age, date_of_birth=date_of_birth, gender=gender, address=address,phone_number=phone, aadhar_number=aadhar_number)
         # emp.save()
         return render(request, 'symbiote/imagecreation.html')
 
@@ -240,6 +215,77 @@ def add_employee(request):
     return render(request, 'symbiote/add_employee.html')
 
 
+# def save_excel(request):
+#     employee=details.objects.all()
+#     emp_id=[]
+#     for i in employee:
+#         emp_id.append(i.Employee_id)
+#     today_status=attendence_area.objects.filter(date=datetime.date.today())
+#     late_entry=[];present=[]
+#     for i in today_status:
+#         time=i.Time
+#         time = str((time)).split(":")
+#         hh = int(time[0])
+#         mm = int(time[1])
+#
+#         if hh > 10 or (hh == 10 and mm != 0):
+#             late_entry.append(i.Employee_id)
+#         else:
+#             present.append(i.Employee_id)
+#     lateandpresent=present+late_entry
+#     absent_entry=set(emp_id)-set(lateandpresent)
+#     status=[]
+#     for i in emp_id:
+#         if i in late_entry:
+#             status.append([i,"Late"])
+#         elif i in present:
+#             status.append([i,"present"])
+#         elif i in absent_entry:
+#             status.append([i,"absent"])
+#
+#
+#     #df = pd.DataFrame(status, columns=['Employee_Id', 'Status'])
+#     date=datetime.datetime.today().date()
+#     #df.to_excel("symbiote/static/symbiote/index_styles/attendance_status_files/"+(str(date) + ".xlsx"))
+#     return redirect('sample')
+#
+# def save_clear(request):
+#     print("yes")
+#     employee = details.objects.all()
+#     emp_id = []
+#     for i in employee:
+#         emp_id.append(i.Employee_id)
+#     today_status = attendence_area.objects.filter(date=datetime.date.today())
+#     late_entry = []
+#     present = []
+#     for i in today_status:
+#         time = i.Time
+#         time = str((time)).split(":")
+#         hh = int(time[0])
+#         mm = int(time[1])
+#         if hh > 10 or (hh == 10 and mm != 0):
+#             late_entry.append(i.Employee_id)
+#         else:
+#             present.append(i.Employee_id)
+#     lateandpresent = present + late_entry
+#     absent_entry = set(emp_id) - set(lateandpresent)
+#     status = []
+#     for i in emp_id:
+#         if i in late_entry:
+#             status.append([i, "Late"])
+#         elif i in present:
+#             status.append([i, "present"])
+#         elif i in absent_entry:
+#             status.append([i, "absent"])
+#     print(status)
+#
+#
+#     #df = pd.DataFrame(status, columns=['Employee_Id', 'Status'])
+#     date=datetime.datetime.today().date()
+#     #df.to_excel("symbiote/static/symbiote/index_styles/attendance_status_files/"+(str(date) + ".xlsx"))
+#     data = attendence_area.objects.all()
+#     data.delete()
+#     return redirect('/')
 
 
 def download_stats(request):
@@ -247,7 +293,8 @@ def download_stats(request):
 
 
 def video_feed(request):
-    return StreamingHttpResponse(imageCapture(VideoCamera() , "Praveen"), content_type='multipart/x-mixed-replace; boundary=frame')
+    return StreamingHttpResponse(imageCapture(VideoCamera() , "Praveen" , 12), content_type='multipart/x-mixed-replace; boundary=frame')
+
 
 def video_feed1(request):
     return StreamingHttpResponse(datacreation(Video()), content_type='multipart/x-mixed-replace; boundary=frame')
@@ -257,8 +304,12 @@ def stop_streaming1(request):
         print("PRINTING")
         camera = Video()
         camera.stop_streaming()
-        return render(request, 'symbiote/download_files.html', {"status": True, "username": request.user})
-    return render(request, 'symbiote/download_files.html', {"status": False, "username": request.user})
+        return render(request, 'symbiote/download_files.html', {"status": True, "username": request.user , "lis" : []})
+    l = list(set(lis()))
+    print(l)
+    refresh()
+    print(l)
+    return render(request, 'symbiote/download_files.html', {"status": False, "username": request.user , "lis" : l})
 
 
 def stop_streaming(request):
@@ -267,12 +318,15 @@ def stop_streaming(request):
         # camera = VideoCamera()
         # camera.stop_streaming()
         return render(request, 'symbiote/imagecreation.html', {"status": True, "username": request.user})
-    return render(request, 'symbiote/imagecreation.html', {"status": False, "username": request.user})
-
+    return render(request, 'symbiote/home_page.html', {"status": False, "username": request.user})
 
 def uncapture(request):
     if request.method == "POST":
         return redirect('stop_streaming1')
+
+def uncapture1(request):
+    if request.method == "POST":
+        return redirect('stop_streaming')
 
 
 def login2(request):
@@ -348,6 +402,3 @@ def clear_project(request):
         return render(request,'symbiote/closing_update.html',{'username':request.user,'projects':projects})
 
 
-
-def imagecreation(request):
-    return render(request, 'symbiote/imagecreation.html')

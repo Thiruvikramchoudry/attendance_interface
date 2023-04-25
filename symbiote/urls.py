@@ -28,14 +28,12 @@ urlpatterns = [
     path('uncapture', views.uncapture, name='uncapture'),
     path('video_feed1', views.video_feed1, name='video_feed1'),
     path('stop_streaming1', views.stop_streaming1, name='stop_streaming1'),
+    path('uncapture1', views.uncapture1, name='uncapture1'),
     path('uncapture', views.uncapture, name='uncapture'),
     path('add_supervisor',views.add_supervisor,name='add_supervisor'),
     path('morning_update',views.morning_update,name="morning_update"),
     path('closing_update',views.closing_update,name="closing_update"),
     path('clear_project',views.clear_project,name="clear_project"),
 
-    path('uncapture', views.uncapture, name='uncapture'),
-    path('video_feed1', views.video_feed1, name='video_feed1'),
-    path('stop_streaming1', views.stop_streaming1, name='stop_streaming1'),
 
 ]
