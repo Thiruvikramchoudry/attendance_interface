@@ -1,5 +1,6 @@
 from django.http import StreamingHttpResponse
-from symbiote.svm_face_recognation.datasetCreation import imageCapture
+from symbiote.svm_face_recognation.preprocessingEmbeddings import preprocessingEmbeddings
+from symbiote.svm_face_recognation.trainingFaceML import trainingFaceML
 from collections.abc import Iterable
 import numpy as np
 import imutils
@@ -7,7 +8,13 @@ import pickle
 import time
 import cv2
 import csv
+l = []
+def lis():
+    return l
 
+def refresh():
+    l.clear()
+    return l
 def flatten(lis):
     for item in lis:
         if isinstance(item, Iterable) and not isinstance(item, str):
@@ -29,6 +36,8 @@ class Video:
          self.video.release()
 
 def datacreation(camera):
+    preprocessingEmbeddings()
+    trainingFaceML()
     embeddingFile = "symbiote/svm_face_recognation/output/embeddings.pickle"
     embeddingModel = "symbiote/svm_face_recognation/openface_nn4.small2.v1.t7"
     recognizerFile = "symbiote/svm_face_recognation/output/recognizer.pickle"
@@ -46,16 +55,14 @@ def datacreation(camera):
     recognizer = pickle.loads(open(recognizerFile, "rb").read())
     le = pickle.loads(open(labelEncFile, "rb").read())
 
-    Roll_Number = ""
     box = []
     print("[INFO] starting video stream...")
     while True:
         frame = camera.get_frame()
         frame = imutils.resize(frame, width=600)
         (h, w) = frame.shape[:2]
-        imageBlob = cv2.dnn.blobFromImage(
-            cv2.resize(frame, (300, 300)), 1.0, (300, 300),
-            (104.0, 177.0, 123.0), swapRB=False, crop=False)
+        imageBlob = cv2.dnn.blobFromImage(cv2.resize(frame, (300, 300)), 1.0, (300, 300), (104.0, 177.0, 123.0),
+                                          swapRB=False, crop=False)
 
         detector.setInput(imageBlob)
         detections = detector.forward()
@@ -65,7 +72,6 @@ def datacreation(camera):
             confidence = detections[0, 0, i, 2]
 
             if confidence > conf:
-
                 box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
                 (startX, startY, endX, endY) = box.astype("int")
 
@@ -83,33 +89,16 @@ def datacreation(camera):
                 j = np.argmax(preds)
                 proba = preds[j]
                 name = le.classes_[j]
-                with open('symbiote/svm_face_recognation/student.csv', 'r') as csvFile:
-                    reader = csv.reader(csvFile)
-                    for row in reader:
-                        box = np.append(box, row)
-                        name = str(name)
-                        if name in row:
-                            person = str(row)
-                            print(name)
-                    listString = str(box)
-                    print(box)
-                    if name in listString:
-                        singleList = list(flatten(box))
-                        listlen = len(singleList)
-                        Index = singleList.index(name)
-                        name = singleList[Index]
-                        Roll_Number = singleList[Index + 1]
-                        print(Roll_Number)
-
-                text = "{} : {} : {:.2f}%".format(name, Roll_Number, proba * 100)
+                print(name)
+                l.append(name)
+                text = "{}  : {:.2f}%".format(name, proba * 100)
                 y = startY - 10 if startY - 10 > 10 else startY + 10
-                cv2.rectangle(frame, (startX, startY), (endX, endY),
-                              (0, 0, 255), 2)
+                cv2.rectangle(frame, (startX, startY), (endX, endY), (0, 0, 255), 2)
                 cv2.putText(frame, text, (startX, y),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 0, 255), 2)
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 255, 0), 2)
         ret, jpeg = cv2.imencode('.jpg', frame)
-        frame = jpeg.tobytes()
-        yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+        frame1 = jpeg.tobytes()
+        yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame1 + b'\r\n')
 
 
 
