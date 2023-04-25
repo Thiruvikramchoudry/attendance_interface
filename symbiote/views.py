@@ -8,8 +8,9 @@ import pandas as pd
 # import symbiote.main_db_connection as mdb
 import os
 import cv2
-from symbiote.videocapture import VideoCamera, gen
+from symbiote.svm_face_recognation.datasetCreation import VideoCamera, gen , imageCapture
 from django.http import StreamingHttpResponse
+from symbiote.videocapture import Video , datacreation
 from django.http import FileResponse
 
 
@@ -230,7 +231,10 @@ def add_employee(request):
         address = request.POST['address']
         phone = request.POST['phone_number']
         aadhar_number = request.POST['aadhar_number']
-        image = request.POST.get("image")
+        #emp = employee_details(username=name, age=age, date_of_birth=date_of_birth, gender=gender, address=address,phone_number=phone, aadhar_number=aadhar_number)
+        # emp.save()
+        return render(request, 'symbiote/imagecreation.html')
+
 
     return render(request, 'symbiote/add_employee.html')
 
@@ -242,21 +246,32 @@ def download_stats(request):
 
 
 def video_feed(request):
-    return StreamingHttpResponse(gen(VideoCamera()), content_type='multipart/x-mixed-replace; boundary=frame')
+    return StreamingHttpResponse(imageCapture(VideoCamera() , "Praveen"), content_type='multipart/x-mixed-replace; boundary=frame')
 
+def video_feed1(request):
+    return StreamingHttpResponse(datacreation(Video()), content_type='multipart/x-mixed-replace; boundary=frame')
 
-def stop_streaming(request):
+def stop_streaming1(request):
     if request.method == "POST":
         print("PRINTING")
-        camera = VideoCamera()
+        camera = Video()
         camera.stop_streaming()
         return render(request, 'symbiote/download_files.html', {"status": True, "username": request.user})
     return render(request, 'symbiote/download_files.html', {"status": False, "username": request.user})
 
 
+def stop_streaming(request):
+    if request.method == "POST":
+        print("PRINTING")
+        # camera = VideoCamera()
+        # camera.stop_streaming()
+        return render(request, 'symbiote/imagecreation.html', {"status": True, "username": request.user})
+    return render(request, 'symbiote/imagecreation.html', {"status": False, "username": request.user})
+
+
 def uncapture(request):
     if request.method == "POST":
-        return redirect('stop_streaming')
+        return redirect('stop_streaming1')
 
 
 def login2(request):
@@ -330,3 +345,6 @@ def clear_project(request):
         return render(request,'symbiote/closing_update.html',{'username':request.user,'projects':projects})
 
 
+
+def imagecreation(request):
+    return render(request, 'symbiote/imagecreation.html')
