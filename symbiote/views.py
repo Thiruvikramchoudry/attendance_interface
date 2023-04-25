@@ -10,7 +10,7 @@ import os
 import cv2
 from symbiote.svm_face_recognation.datasetCreation import VideoCamera, gen , imageCapture
 from django.http import StreamingHttpResponse
-from symbiote.videocapture import Video , datacreation
+from symbiote.videocapture import Video,datacreation
 from django.http import FileResponse
 
 
