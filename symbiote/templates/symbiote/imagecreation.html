@@ -48,7 +48,7 @@
                 <div class="col-sm-12 ">
                             <div class="bg-light rounded h-100 p-4">
                                 <br>
-                                <h3 class="card-title" style="text-align: center;color: cyan">MANUAL ATTENDANCE</h3>
+                                <h3 class="card-title" style="text-align: center;color: cyan">Image Creation</h3>
                                 <br>
                             <div  id="result_dis">
 
@@ -63,6 +63,13 @@
                                 <form method="POST" action="{% url 'stop_streaming' %}">
                                     {% csrf_token %}
                                     <button type="submit" class="btn btn-primary" >Start Recognition</button>
+                                </form>
+                                {% endif %}
+                                {% if status == True %}
+                                <form method="POST" action="{% url 'uncapture1' %}">
+                                    <h4 style="margin-left: 10px">Press Stop Recogntion When Video get message in image</h4>
+                                    {% csrf_token %}
+                                    <button class="btn  btn-rounded btn-fw" type="submit" style="margin-left: 10px;background-color: #85CDFD ; color:black">Stop Recognition</button>
                                 </form>
                                 {% endif %}
                             </div>

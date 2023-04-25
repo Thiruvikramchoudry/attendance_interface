@@ -179,7 +179,45 @@
                                      <img src="{% url 'video_feed1' %}" id = "video_result" >
                                         </div>
                                     {% endif %}
+                            {% if lis %}
+                                <div class="container-fluid pt-4 px-4">
+                <div class="bg-light text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">Recent Updates</h6>
+{#                        <a href="{% url 'attendance_status' %}" style="color: #85CDFD">Show All</a>#}
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-dark">
+                                    <th scope="col" style="text-align: center">Employee Id</th>
+{#                                    <th scope="col" style="text-align: center">Employee Name</th>#}
+{#                                    <th scope="col" style="text-align: center">Gender</th>#}
+{#                                    <th scope="col" style="text-align: center">Age</th>#}
+{#                                    <th scope="col" style="text-align: center">Address</th>#}
 
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in lis %}
+                                <tr>
+                                    <td style="text-align: center">{{ i }}</td>
+{#                                    <td style="text-align: center">{{ i.employee_name }}</td>#}
+{#                                    <td style="text-align: center">{{ i.employee_gender }}</td>#}
+{#                                    <td style="text-align: center">{{ i.employee_age }}</td>#}
+{#                                    <td style="text-align: center">{{ i.employee_location }}</td>#}
+
+
+                                </tr>
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+                            {% endif %}
                             <div style="margin: auto;">
                                 {% if status != True %}
                                 <form method="POST" action="{% url 'stop_streaming1' %}">

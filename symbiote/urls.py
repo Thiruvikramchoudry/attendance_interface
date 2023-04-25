@@ -28,5 +28,6 @@ urlpatterns = [
     path('uncapture', views.uncapture, name='uncapture'),
     path('video_feed1', views.video_feed1, name='video_feed1'),
     path('stop_streaming1', views.stop_streaming1, name='stop_streaming1'),
+    path('uncapture1', views.uncapture1, name='uncapture1'),
 
 ]

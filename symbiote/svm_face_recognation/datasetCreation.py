@@ -6,8 +6,7 @@ import os
 from symbiote.svm_face_recognation.preprocessingEmbeddings import preprocessingEmbeddings
 from symbiote.svm_face_recognation.trainingFaceML import trainingFaceML
 from django.shortcuts import render, redirect
-from symbiote import views
-def imageCapture(cam , Name):
+def imageCapture(cam , Name , Roll_Number):
     cascade = 'symbiote/svm_face_recognation/haarcascade_frontalface_default.xml'
     detector = cv2.CascadeClassifier(cascade)
 
@@ -19,7 +18,7 @@ def imageCapture(cam , Name):
         os.mkdir(path)
         print(sub_data)
 
-    info = [str(Name)]
+    info = [str(Name) , str(Roll_Number)]
     with open('student.csv', 'a') as csvFile:
         write = csv.writer(csvFile)
         write.writerow(info)
@@ -36,18 +35,19 @@ def imageCapture(cam , Name):
 
         for (x, y, w, h) in rects:
             cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+            if total == 49:
+                cv2.putText(frame, "Press Stop Recognition to quit", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255),2)
             p = os.path.sep.join([path, "{}.png".format(str(total).zfill(5))])
             cv2.imwrite(p, img)
             total += 1
-
-        key = cv2.waitKey(1) & 0xFF
-        if key == ord("q"):
-            break
+        ret, jpeg = cv2.imencode('.jpg', frame)
+        frame = jpeg.tobytes()
+        yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
     print("Praveen")
+    cam.stop_streaming()
     preprocessingEmbeddings()
     trainingFaceML()
-    cam.stop_streaming()
-    return redirect('home')
+    return redirect('/')
 
 
 class VideoCamera:

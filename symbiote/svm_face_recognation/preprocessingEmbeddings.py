@@ -7,7 +7,7 @@ import os
 def preprocessingEmbeddings():
 	dataset = "symbiote/svm_face_recognation/dataset"
 
-	embeddingFile = "symbiote/svm_face_recognation/embeddings.pickle" #initial name for embedding file
+	embeddingFile = "symbiote/svm_face_recognation/output/embeddings.pickle" #initial name for embedding file
 	embeddingModel = "symbiote/svm_face_recognation/openface_nn4.small2.v1.t7" #initializing model for embedding Pytorch
 
 	#initialization of caffe model for face detection
@@ -72,7 +72,10 @@ def preprocessingEmbeddings():
 
 	print("Embedding:{0} ".format(total))
 	data = {"embeddings": knownEmbeddings, "names": knownNames}
+	print(data["names"])
 	f = open(embeddingFile, "wb")
 	f.write(pickle.dumps(data))
 	f.close()
 	print("Process Completed")
+
+
