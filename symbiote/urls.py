@@ -30,4 +30,5 @@ urlpatterns = [
     path('closing_update',views.closing_update,name="closing_update"),
     path('clear_project',views.clear_project,name="clear_project"),
 
+
 ]
