@@ -266,7 +266,7 @@ def add_supervisor(request):
         supervisor_details.save()
         return redirect('admin_page')
 
-    return render(request,'symbiote/add_supervisor.html')
+    return render(request,'symbiote/add_supervisor.html',{'username':request.user})
 
 
 def morning_update(request):
@@ -275,4 +275,20 @@ def morning_update(request):
     else:
         projects=project.objects.all()
         return render(request,'symbiote/morning_update.html',{'username':request.user,'projects':projects})
+
+def closing_update(request):
+    if request.method=='POST':
+        pass
+    else:
+        projects=project.objects.all()
+        return render(request,'symbiote/closing_update.html',{'username':request.user,'projects':projects})
+
+
+def clear_project(request):
+    if request.method=='POST':
+        pass
+    else:
+        projects=project.objects.all()
+        return render(request,'symbiote/closing_update.html',{'username':request.user,'projects':projects})
+
 

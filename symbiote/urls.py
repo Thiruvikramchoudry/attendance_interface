@@ -27,5 +27,7 @@ urlpatterns = [
     path('uncapture', views.uncapture, name='uncapture'),
     path('add_supervisor',views.add_supervisor,name='add_supervisor'),
     path('morning_update',views.morning_update,name="morning_update"),
+    path('closing_update',views.closing_update,name="closing_update"),
+    path('clear_project',views.clear_project,name="clear_project"),
 
 ]

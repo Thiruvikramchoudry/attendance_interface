@@ -56,19 +56,19 @@
 
               <div class="btn-group" role="group">
                   <div class="dropdown">
-    <button id="signin-dropdown" type="button" class="btn btn-lg btn-dark bg-gradient dropdown-toggle order-0" data-bs-toggle="dropdown" aria-expanded="false">
+    <button id="signin-dropdown" type="button" class="btn btn-lg btn-dark bg-gradient dropdown-toggle order-0" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #0BAC56;border: none;">
       SIGN IN
     </button>
-    <ul class="dropdown-menu" aria-labelledby="signin-dropdown" style="background-color: #1F1534;border-color: #19112a">
-      <li><a class="dropdown-item" href="{% url 'add_employee' %}" style="background-color: #1F1534;border-color: #19112a;color: white;text-align: center">EMPLOYEE </a></li> </ul>
+    <ul class="dropdown-menu" aria-labelledby="signin-dropdown" style="background-color: #0BAC56;border-color: #0BAC56">
+      <li><a class="dropdown-item" href="{% url 'add_employee' %}" style="background-color: #0BAC56;border-color: #0BAC56;color: white;text-align: center">EMPLOYEE </a></li> </ul>
   </div>
   <div class="dropdown">
-    <button id="signup-dropdown" type="button" class="btn btn-lg btn-dark bg-gradient dropdown-toggle order-0" data-bs-toggle="dropdown" aria-expanded="false"  style="margin-left: 20px">
+    <button id="signup-dropdown" type="button" class="btn btn-lg btn-dark bg-gradient dropdown-toggle order-0" data-bs-toggle="dropdown" aria-expanded="false"  style="margin-left: 20px;background-color: #0BAC56;border: none;">
       SIGN UP
     </button>
-    <ul class="dropdown-menu" aria-labelledby="signup-dropdown" style="background-color: #1F1534;border-color: #19112a">
-      <li><a class="dropdown-item" href="{%  url 'login_supervisor' %}" style="background-color: #1F1534;border-color: #19112a;color: white;text-align: center">SUPERVISOR</a></li>
-      <li><a class="dropdown-item" href="{% url 'login_admin' %}" style="background-color: #1F1534;border-color: #19112a;color: white;text-align: center">ADMIN</a></li>
+    <ul class="dropdown-menu" aria-labelledby="signup-dropdown" style="background-color: #0BAC56;border-color: #0BAC56">
+      <li><a class="dropdown-item" href="{%  url 'login_supervisor' %}" style="background-color: #0BAC56;border-color: #000000;color: white;text-align: center;margin-bottom: 5px;">SUPERVISOR</a></li>
+      <li><a class="dropdown-item" href="{% url 'login_admin' %}" style="background-color: #0BAC56;border-color: #011e0f;color: white;text-align: center">ADMIN</a></li>
     </ul>
   </div>
 </div>
