@@ -167,13 +167,48 @@
                                         <option style="text-align: center">{{ i }}</option>
                                     {% endfor %}
                               </select>
-                            <a id="dow_but" download href="{% static '' %}"><div  id="download_button">
+                            <a id="dow_but" download href="?download=true"><div  id="download_button">
                                 Download
                             </div></a>
                         </div>
                     </div>
                 </div>
             </div>
+
+{#        <div class="container-fluid pt-4 px-4">#}
+{#    <div class="row g-4">#}
+{#        <div class="col-sm-6 col-xl-12">#}
+{#            <div class="bg-light rounded  align-items-center  p-4">#}
+{#                <select class="form-control" style="background-color: #222f41;color: whitesmoke;border: none;width: 22%;margin: auto" name="name" id="file_selector" onchange="path_specifier()">#}
+{#                    <option selected style="background-color: #222f41;color: whitesmoke;border: none;text-align: center" >SELECT FILE</option>#}
+{#                    {% for file_name in files_dir %}#}
+{#                        <option style="text-align: center">{{ file_name }}</option>#}
+{#                    {% endfor %}#}
+{#                </select>#}
+{#                <a id="dow_but" download href="#" onclick="download_file()"><div  id="download_button">#}
+{#                    Download#}
+{#                </div></a>#}
+{#            </div>#}
+{#        </div>#}
+{#    </d#}
+
+        <div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-6 col-xl-12">
+            <div class="bg-light rounded  align-items-center  p-4">
+                <select class="form-control" style="background-color: #222f41;color: whitesmoke;border: none;width: 22%;margin: auto" name="name" id="file_selector" onchange="path_specifier()">
+                    <option selected style="background-color: #222f41;color: whitesmoke;border: none;text-align: center" >SELECT DATE</option>
+                    {% for file_name in file_names %}
+                        <option style="text-align: center">{{ file_name }}</option>
+                    {% endfor %}
+                </select>
+                <a id="dow_but" download href="{% static '' %}"><div  id="download_button">
+                    Download
+                </div></a>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

@@ -10,6 +10,7 @@ import os
 import cv2
 from symbiote.videocapture import VideoCamera, gen
 from django.http import StreamingHttpResponse
+from django.http import FileResponse
 
 
 # Create your views here.
@@ -162,10 +163,31 @@ def attendance_status(request):
     detail_name = df['Employee_name']
     detail_status = df['Status']
     details = []
+    print(emp_id, detail_name, detail_status,df)
     for i in range(len(detail_name)):
         details.append([emp_id[i], detail_name[i], detail_status[i]])
     return render(request, 'symbiote/attendance_status.html', {'username': request.user, 'details': details})
 
+    # project_id = supervisor_assign.objects.get(supervisor_username=request.user).project_id
+    # today = datetime.date.today()
+    # file_name = (str(today.day) + '-' + str(
+    #     today.month if len(str(today.month)) == 2 else '0' + str(today.month)) + '-' + str(today.year)) + ".xlsx"
+    # file_path = os.path.join('symbiote', 'employee_assign', str(project_id), file_name)
+    # df = pd.read_excel(file_path)
+    # emp_id = df['Employee_id']
+    # detail_name = df['Employee_name']
+    # detail_status = df['Status']
+    # details = []
+    # for i in range(len(detail_name)):
+    #     details.append([emp_id[i], detail_name[i], detail_status[i]])
+    # if request.GET.get('download', '') == 'true':
+    #     # Create a response object and set its content type
+    #     response = FileResponse(open(file_path, 'rb'), as_attachment=True)
+    #     response['content-type'] = 'application/vnd.ms-excel'
+    #     # Set the filename in the Content-Disposition header
+    #     response['Content-Disposition'] = f'attachment; filename="{file_name}"'
+    #     return response
+    # return render(request, 'symbiote/attendance_status.html', {'username': request.user, 'details': details})
 
 def add_employee(request):
     if request.method == "POST":

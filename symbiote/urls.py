@@ -28,4 +28,5 @@ urlpatterns = [
     path('add_supervisor',views.add_supervisor,name='add_supervisor'),
     path('morning_update',views.morning_update,name="morning_update"),
 
+
 ]
