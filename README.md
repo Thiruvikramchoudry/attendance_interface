@@ -69,6 +69,7 @@ python manage.py runserver
 * [Thiruvikram Choudry](https://github.com/Thiruvikramchoudry)
 * [Praveen](https://github.com/Praveen-18)  
 * [Srinath](https://github.com/srinath0307)
+* [Sridhar](https://github.com/srid20ad047)
 * [Jaswanth](https://github.com/JASWANTHJET)
 * [Sharavanan](https://github.com/Sharavanan69)
 ## Contributing
